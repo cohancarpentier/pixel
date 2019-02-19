@@ -18,100 +18,102 @@ class RootIndex extends React.Component {
 
     return (
       <Layout location={this.props.location}>
-        <div>
-          <Helmet title={siteTitle} />
-          <section className="hero has-background-black is-fullheight">
-            <div className="hero-body">
-              <div className="container is-fluid">
-                <h1
-                  className="title is-1 has-text-weight-bold has-text-white"
-                  style={{ whiteSpace: 'pre' }}
-                  dangerouslySetInnerHTML={{
-                    __html: homepage.hero.childMarkdownRemark.html,
-                  }}
-                />
-              </div>
+        <Helmet title={siteTitle} />
+        <section className="hero has-background-black is-fullheight">
+          <div className="hero-body">
+            <div className="container is-fluid">
+              <h1
+                className="title is-1 has-text-weight-bold has-text-white"
+                style={{ whiteSpace: 'pre' }}
+                dangerouslySetInnerHTML={{
+                  __html: homepage.hero.childMarkdownRemark.html,
+                }}
+              />
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section className="hero has-background-white is-medium">
-            <div className="hero-body">
-              <div className="container">
-                <div className="columns">
-                  <div className="column is-two-thirds">
-                    <h1
-                      className="title has-text-primary is-1 has-text-weight-bold"
-                      dangerouslySetInnerHTML={{
-                        __html: homepage.slogan.childMarkdownRemark.html,
-                      }}
-                    />
-                  </div>
+        <section className="hero has-background-white is-medium">
+          <div className="hero-body">
+            <div className="container">
+              <div className="columns">
+                <div className="column is-two-thirds">
+                  <h1
+                    className="title has-text-primary is-1 has-text-weight-bold"
+                    dangerouslySetInnerHTML={{
+                      __html: homepage.slogan.childMarkdownRemark.html,
+                    }}
+                  />
                 </div>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section className="hero has-background-white is-medium">
-            <div className="hero-body">
-              <div className="container">
-                <div className="columns is-variable is-8 is-multiline">
-                  {homepage.services.map(node => {
-                    return (
-                      <div className="column is-one-third">
-                        <h1 className="title has-text-black is-4 has-text-weight-bold">
-                          {node.title}
-                        </h1>
-                        <hr />
-                        <div
-                          style={{ whiteSpace: 'pre', marginBottom: '4rem' }}
-                          dangerouslySetInnerHTML={{
-                            __html: node.description.childMarkdownRemark.html,
-                          }}
-                        />
-                      </div>
-                    )
-                  })}
+        <section className="hero has-background-white is-medium">
+          <div className="hero-body">
+            <div className="container">
+              <div className="columns is-variable is-8 is-multiline">
+                {homepage.services.map(node => {
+                  return (
+                    <div className="column is-one-third">
+                      <h1 className="title has-text-black is-4 has-text-weight-bold">
+                        {node.title}
+                      </h1>
+                      <hr />
+                      <div
+                        style={{ whiteSpace: 'pre', marginBottom: '4rem' }}
+                        dangerouslySetInnerHTML={{
+                          __html: node.description.childMarkdownRemark.html,
+                        }}
+                      />
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          className="hero is-medium has-background-primary "
+          style={{
+            marginBottom: '4rem',
+            marginLeft: '4rem',
+            marginRight: '4rem',
+          }}
+        >
+          <div className="hero-body">
+            <div className="container">
+              <div className="columns" style={{ marginBottom: '4rem' }}>
+                <div className="column is-two-thirds">
+                  <h2 className="title has-text-white is-1 has-text-weight-bold">
+                    {homepage.promo.title}
+                  </h2>
+                </div>
+              </div>
+              <div className="level">
+                <div className="level-left">
+                  <h3
+                    className="title has-text-black is-4 has-text-weight-bold"
+                    dangerouslySetInnerHTML={{
+                      __html: homepage.promo.subtitle.childMarkdownRemark.html,
+                    }}
+                  />
+                </div>
+                <div className="level-right">
+                  <Link to={`/`}>
+                    <span>Mandatez-nous</span>
+                  </Link>
                 </div>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section
-            className="hero has-background-primary is-medium"
-            style={{ marginBottom: '4rem' }}
-          >
-            <div className="hero-body">
-              <div className="container">
-                <div className="columns" style={{ marginBottom: '4rem' }}>
-                  <div className="column is-two-thirds">
-                    <h2 className="title has-text-white is-1 has-text-weight-bold">
-                      {homepage.promo.title}
-                    </h2>
-                  </div>
-                </div>
-                <div className="level">
-                  <div className="level-left">
-                    <h3
-                      className="title has-text-black is-4 has-text-weight-bold"
-                      dangerouslySetInnerHTML={{
-                        __html:
-                          homepage.promo.subtitle.childMarkdownRemark.html,
-                      }}
-                    />
-                  </div>
-                  <div className="level-right">
-                    <Link to={`/`}>
-                      <span>Mandatez-nous</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+        <Footer />
 
-          <Footer />
-
-          <Hero data={author.node} />
+        {/*<Hero data={author.node} />
           <div className="wrapper">
             <h2 className="section-headline">Recent articles</h2>
             <ul className="article-list">
@@ -123,8 +125,7 @@ class RootIndex extends React.Component {
                 )
               })}
             </ul>
-          </div>
-        </div>
+            </div>*/}
       </Layout>
     )
   }
