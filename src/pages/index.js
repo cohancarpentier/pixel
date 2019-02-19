@@ -6,6 +6,7 @@ import Hero from '../components/hero'
 import Layout from '../components/layout'
 import ArticlePreview from '../components/article-preview'
 import Footer from '../components/footer'
+import Navigation from '../components/navigation'
 
 class RootIndex extends React.Component {
   render() {
@@ -14,11 +15,10 @@ class RootIndex extends React.Component {
     const homepage = get(this, 'props.data.allContentfulHomePage.edges')[0].node
     const [author] = get(this, 'props.data.allContentfulPerson.edges')
 
-    console.log(homepage)
-
     return (
       <Layout location={this.props.location}>
         <Helmet title={siteTitle} />
+        <Navigation />
         <section className="hero has-background-black is-fullheight">
           <div className="hero-body">
             <div className="container is-fluid">
