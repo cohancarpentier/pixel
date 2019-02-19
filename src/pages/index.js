@@ -10,12 +10,70 @@ class RootIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const projects = get(this, 'props.data.allContentfulProject.edges')
+    const homepage = get(this, 'props.data.allContentfulHomePage.edges')[0].node
     const [author] = get(this, 'props.data.allContentfulPerson.edges')
 
+    console.log(homepage)
+
     return (
-      <Layout location={this.props.location} >
-        <div style={{ background: '#fff' }}>
+      <Layout location={this.props.location}>
+        <div>
           <Helmet title={siteTitle} />
+          <section className="hero has-background-black is-fullheight">
+            <div className="hero-body">
+              <div className="container is-fluid">
+                <h1
+                  className="title is-1 has-text-weight-bold has-text-white"
+                  style={{ whiteSpace: 'pre' }}
+                  dangerouslySetInnerHTML={{
+                    __html: homepage.hero.childMarkdownRemark.html,
+                  }}
+                />
+              </div>
+            </div>
+          </section>
+
+          <section className="hero has-background-white is-medium">
+            <div className="hero-body">
+              <div className="container">
+                <div className="columns">
+                  <div className="column is-two-thirds">
+                    <h1
+                      className="title has-text-primary is-1 has-text-weight-bold"
+                      dangerouslySetInnerHTML={{
+                        __html: homepage.slogan.childMarkdownRemark.html,
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="hero has-background-white is-medium">
+            <div className="hero-body">
+              <div className="container">
+                <div className="columns is-variable is-8">
+                  {homepage.services.map(node => {
+                    return (
+                      <div className="column is-one-third">
+                        <h1 className="title has-text-black is-4 has-text-weight-bold">
+                          {node.title}
+                        </h1>
+                        <hr />
+                        <div
+                          style={{ whiteSpace: 'pre' }}
+                          dangerouslySetInnerHTML={{
+                            __html: node.description.childMarkdownRemark.html,
+                          }}
+                        />
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+          </section>
           <Hero data={author.node} />
           <div className="wrapper">
             <h2 className="section-headline">Recent articles</h2>
@@ -44,6 +102,30 @@ export const pageQuery = graphql`
         title
       }
     }
+    allContentfulHomePage {
+      edges {
+        node {
+          hero {
+            childMarkdownRemark {
+              html
+            }
+          }
+          slogan {
+            childMarkdownRemark {
+              html
+            }
+          }
+          services {
+            title
+            description {
+              childMarkdownRemark {
+                html
+              }
+            }
+          }
+        }
+      }
+    }
     allContentfulProject(sort: { fields: [publishDate], order: DESC }) {
       edges {
         node {
@@ -53,7 +135,7 @@ export const pageQuery = graphql`
           tags
           heroImage {
             fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-             ...GatsbyContentfulFluid_tracedSVG
+              ...GatsbyContentfulFluid_tracedSVG
             }
           }
           description {
@@ -64,7 +146,9 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulPerson(filter: { contentful_id: { eq: "15jwOBqpxqSAOy2eOO4S0m" } }) {
+    allContentfulPerson(
+      filter: { contentful_id: { eq: "15jwOBqpxqSAOy2eOO4S0m" } }
+    ) {
       edges {
         node {
           name
