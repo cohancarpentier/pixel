@@ -5,7 +5,6 @@ import Helmet from 'react-helmet'
 import Layout from '../components/layout'
 import Footer from '../components/footer'
 import { Navigation } from '../components/navigation'
-import video from './../videos/video.webm'
 
 class RootIndex extends React.Component {
   render() {
