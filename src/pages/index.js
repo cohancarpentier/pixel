@@ -5,6 +5,7 @@ import Helmet from 'react-helmet'
 import Layout from '../components/layout'
 import Footer from '../components/footer'
 import { Navigation } from '../components/navigation'
+import video from './../videos/video.webm'
 
 class RootIndex extends React.Component {
   render() {
@@ -13,10 +14,43 @@ class RootIndex extends React.Component {
     const projects = get(this, 'props.data.allContentfulProject.edges')
     const homepage = get(this, 'props.data.allContentfulHomePage.edges')[0].node
 
+    console.log(homepage)
+
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={siteTitle} />
-        <section className="hero has-background-black is-fullheight">
+        <section className="hero is-fullheight">
+          <div
+            className="hero-video"
+            style={{
+              height: '100%',
+              width: '100%',
+              background: 'url(../img/index-image.jpg) no-repeat center center',
+              backgroundSize: 'cover',
+            }}
+          >
+            <video
+              poster="img/bgimg.jpg"
+              playsInline
+              autoPlay
+              muted
+              loop
+              style={{
+                height: '100%',
+                width: '100%',
+                objectFit: 'cover',
+                zIndex: '-100',
+                right: 0,
+                bottom: 0,
+                background:
+                  'url(../img/index-image.jpg) no-repeat center center',
+                backgroundSize: 'cover',
+                overflow: 'hidden',
+              }}
+            >
+              <source src={homepage.heroVideo.file.url} type="video/webm" />
+            </video>
+          </div>
           <div className="hero-body">
             <div className="container is-fluid">
               <h1
@@ -130,6 +164,11 @@ export const pageQuery = graphql`
           hero {
             childMarkdownRemark {
               html
+            }
+          }
+          heroVideo {
+            file {
+              url
             }
           }
           slogan {

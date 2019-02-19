@@ -15,6 +15,9 @@ export class Footer extends Component {
             style={{ margin: 0, paddingTop: '4rem', paddingBottom: '4rem' }}
           >
             <div className="level-left">
+              <Link style={{ marginRight: '3rem' }} to={`/`}>
+                Home
+              </Link>
               {/*<Img
                 alt={}
                 fluid={}
@@ -51,13 +54,13 @@ export class Footer extends Component {
                   Prix et mentions
                 </span>
               </Link>
-              <Link to={`/`}>
+              <Link to={`/jobs`}>
                 <span
                   className={`${
                     footerStyles.link
                   } has-text-white has-text-weight-semibold`}
                 >
-                  Carrières
+                  Jobs
                 </span>
               </Link>
               <Link to={`/`}>
