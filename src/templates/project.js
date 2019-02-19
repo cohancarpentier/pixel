@@ -1,37 +1,41 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
 import Img from 'gatsby-image'
+import Layout from '../components/layout'
 
 import heroStyles from '../components/hero.module.css'
 
 class ProjectTemplate extends React.Component {
   render() {
-    const project = get(this.props, 'data.contentfulProject')
+    const post = get(this.props, 'data.contentfulProject')
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
 
     return (
-      <div style={{ background: '#fff' }}>
-        <Helmet title={`${project.title} | ${siteTitle}`} />
-        <div className={heroStyles.hero}>
-          <Img className={heroStyles.heroImage} alt={project.title} sizes={project.heroImage.sizes} />
+      <Layout location={this.props.location} >
+        <div style={{ background: '#fff' }}>
+          <Helmet title={`${post.title} | ${siteTitle}`} />
+          <div className={heroStyles.hero}>
+            <Img className={heroStyles.heroImage} alt={post.title} fluid={post.heroImage.fluid} />
+          </div>
+          <div className="wrapper">
+            <h1 className="section-headline">{post.title}</h1>
+            <p
+              style={{
+                display: 'block',
+              }}
+            >
+              {post.publishDate}
+            </p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: post.body.childMarkdownRemark.html,
+              }}
+            />
+          </div>
         </div>
-        <div className="wrapper">
-          <h1 className="section-headline">{project.title}</h1>
-          <p
-            style={{
-              display: 'block',
-            }}
-          >
-            {project.publishDate}
-          </p>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: project.body.childMarkdownRemark.html,
-            }}
-          />
-        </div>
-      </div>
+      </Layout>
     )
   }
 }
@@ -40,12 +44,17 @@ export default ProjectTemplate
 
 export const pageQuery = graphql`
   query ProjectBySlug($slug: String!) {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     contentfulProject(slug: { eq: $slug }) {
       title
       publishDate(formatString: "MMMM Do, YYYY")
       heroImage {
-        sizes(maxWidth: 1180, background: "rgb:000000") {
-          ...GatsbyContentfulSizes_withWebp
+        fluid(maxWidth: 1180, background: "rgb:000000") {
+          ...GatsbyContentfulFluid_tracedSVG
         }
       }
       body {

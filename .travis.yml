@@ -1,2 +1,15 @@
-before_install: sudo apt-get install -y jq
-script: test/test-on-remote-ci.sh
+language: node_js
+
+os:
+  - linux
+  - osx
+
+node_js:
+  - "node"
+  - "lts/*"
+  - "7"
+  - "8"
+
+script:
+  - npm install
+  - npm run lint
