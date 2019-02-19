@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react'
 import { Link } from 'gatsby'
-import Navigation from './navigation'
 import './../styles/styles.scss'
+import { Navigation } from './navigation'
+import { Footer } from './footer'
 
 class Template extends React.Component {
   render() {
-    const { location, children } = this.props
+    const { location, children, phoneNumber, phoneNumberPretty } = this.props
     let header
 
     let rootPath = `/`
@@ -15,8 +16,15 @@ class Template extends React.Component {
 
     return (
       <Fragment>
-        {/*<Navigation />*/}
+        <Navigation
+          phoneNumber={phoneNumber}
+          phoneNumberPretty={phoneNumberPretty}
+        />
         {children}
+        <Footer
+          phoneNumber={phoneNumber}
+          phoneNumberPretty={phoneNumberPretty}
+        />
       </Fragment>
     )
   }

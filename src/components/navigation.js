@@ -59,7 +59,7 @@ export class Navigation extends Component {
                       </Link>
                     </li>
                     <li>
-                      <Link to={`/`}>
+                      <Link to={`/projects`}>
                         <span
                           className={`${
                             navStyles.menuItem

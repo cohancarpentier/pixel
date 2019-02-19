@@ -3,7 +3,8 @@ import { Link } from 'gatsby'
 import footerStyles from './footer.module.scss'
 import instagram from './../images/instagram.svg'
 import facebook from './../images/facebook.svg'
-class Footer extends Component {
+
+export class Footer extends Component {
   render() {
     const { phoneNumber, phoneNumberPretty } = this.props
     return (
@@ -83,5 +84,3 @@ class Footer extends Component {
     )
   }
 }
-
-export default Footer
