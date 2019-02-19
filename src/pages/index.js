@@ -1,10 +1,11 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Hero from '../components/hero'
 import Layout from '../components/layout'
 import ArticlePreview from '../components/article-preview'
+import Footer from '../components/footer'
 
 class RootIndex extends React.Component {
   render() {
@@ -53,7 +54,7 @@ class RootIndex extends React.Component {
           <section className="hero has-background-white is-medium">
             <div className="hero-body">
               <div className="container">
-                <div className="columns is-variable is-8">
+                <div className="columns is-variable is-8 is-multiline">
                   {homepage.services.map(node => {
                     return (
                       <div className="column is-one-third">
@@ -62,7 +63,7 @@ class RootIndex extends React.Component {
                         </h1>
                         <hr />
                         <div
-                          style={{ whiteSpace: 'pre' }}
+                          style={{ whiteSpace: 'pre', marginBottom: '4rem' }}
                           dangerouslySetInnerHTML={{
                             __html: node.description.childMarkdownRemark.html,
                           }}
@@ -74,6 +75,42 @@ class RootIndex extends React.Component {
               </div>
             </div>
           </section>
+
+          <section
+            className="hero has-background-primary is-medium"
+            style={{ marginBottom: '4rem' }}
+          >
+            <div className="hero-body">
+              <div className="container">
+                <div className="columns" style={{ marginBottom: '4rem' }}>
+                  <div className="column is-two-thirds">
+                    <h2 className="title has-text-white is-1 has-text-weight-bold">
+                      {homepage.promo.title}
+                    </h2>
+                  </div>
+                </div>
+                <div className="level">
+                  <div className="level-left">
+                    <h3
+                      className="title has-text-black is-4 has-text-weight-bold"
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          homepage.promo.subtitle.childMarkdownRemark.html,
+                      }}
+                    />
+                  </div>
+                  <div className="level-right">
+                    <Link to={`/`}>
+                      <span>Mandatez-nous</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <Footer />
+
           <Hero data={author.node} />
           <div className="wrapper">
             <h2 className="section-headline">Recent articles</h2>
@@ -113,6 +150,14 @@ export const pageQuery = graphql`
           slogan {
             childMarkdownRemark {
               html
+            }
+          }
+          promo {
+            title
+            subtitle {
+              childMarkdownRemark {
+                html
+              }
             }
           }
           services {
