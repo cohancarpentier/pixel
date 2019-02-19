@@ -22,7 +22,9 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Contentful starter',
+    title: 'Pixel',
+    phoneNumber: '8195037956',
+    phoneNumberPretty: '819 503-7956',
   },
   pathPrefix: '/gatsby-contentful-starter',
   plugins: [

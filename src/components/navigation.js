@@ -10,6 +10,7 @@ export class Navigation extends Component {
 
   render() {
     const { showMenu } = this.state
+    const { phoneNumber, phoneNumberPretty } = this.props
     return (
       <Fragment>
         <nav role="navigation" className={navStyles.navigation}>
@@ -123,10 +124,10 @@ export class Navigation extends Component {
                   </h3>
                   <hr style={{ backgroundColor: 'black' }} />
                   <a
-                    href="tel:1231231234"
+                    href={`tel:${phoneNumber}`}
                     className="title is-1 has-text-black has-text-weight-bold"
                   >
-                    123 123-1234
+                    {phoneNumberPretty}
                   </a>
                 </div>
               </div>

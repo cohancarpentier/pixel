@@ -5,6 +5,7 @@ import instagram from './../images/instagram.svg'
 import facebook from './../images/facebook.svg'
 class Footer extends Component {
   render() {
+    const { phoneNumber, phoneNumberPretty } = this.props
     return (
       <footer className="has-background-black has-text-white">
         <div className="container is-fluid">
@@ -21,10 +22,10 @@ class Footer extends Component {
             </div>
             <div className="level-right">
               <a
-                href="tel:1231231234"
+                href={`tel:${phoneNumber}`}
                 className="title is-1 has-text-weight-bold has-text-white"
               >
-                123 123-1234
+                {phoneNumberPretty}
               </a>
             </div>
           </div>
