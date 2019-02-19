@@ -7,7 +7,7 @@ import ArticlePreview from '../components/article-preview'
 class RootIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
+    const projects = get(this, 'props.data.allContentfulProject.edges')
     const [author] = get(this, 'props.data.allContentfulPerson.edges')
 
     return (
@@ -17,7 +17,7 @@ class RootIndex extends React.Component {
         <div className="wrapper">
           <h2 className="section-headline">Recent articles</h2>
           <ul className="article-list">
-            {posts.map(({ node }) => {
+            {projects.map(({ node }) => {
               return (
                 <li key={node.slug}>
                   <ArticlePreview article={node} />
@@ -35,7 +35,7 @@ export default RootIndex
 
 export const pageQuery = graphql`
   query HomeQuery {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+    allContentfulProject(sort: { fields: [publishDate], order: DESC }) {
       edges {
         node {
           title

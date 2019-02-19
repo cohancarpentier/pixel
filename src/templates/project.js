@@ -5,29 +5,29 @@ import Img from 'gatsby-image'
 
 import heroStyles from '../components/hero.module.css'
 
-class BlogPostTemplate extends React.Component {
+class ProjectTemplate extends React.Component {
   render() {
-    const post = get(this.props, 'data.contentfulBlogPost')
+    const project = get(this.props, 'data.contentfulProject')
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
 
     return (
       <div style={{ background: '#fff' }}>
-        <Helmet title={`${post.title} | ${siteTitle}`} />
+        <Helmet title={`${project.title} | ${siteTitle}`} />
         <div className={heroStyles.hero}>
-          <Img className={heroStyles.heroImage} alt={post.title} sizes={post.heroImage.sizes} />
+          <Img className={heroStyles.heroImage} alt={project.title} sizes={project.heroImage.sizes} />
         </div>
         <div className="wrapper">
-          <h1 className="section-headline">{post.title}</h1>
+          <h1 className="section-headline">{project.title}</h1>
           <p
             style={{
               display: 'block',
             }}
           >
-            {post.publishDate}
+            {project.publishDate}
           </p>
           <div
             dangerouslySetInnerHTML={{
-              __html: post.body.childMarkdownRemark.html,
+              __html: project.body.childMarkdownRemark.html,
             }}
           />
         </div>
@@ -36,11 +36,11 @@ class BlogPostTemplate extends React.Component {
   }
 }
 
-export default BlogPostTemplate
+export default ProjectTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
-    contentfulBlogPost(slug: { eq: $slug }) {
+  query ProjectBySlug($slug: String!) {
+    contentfulProject(slug: { eq: $slug }) {
       title
       publishDate(formatString: "MMMM Do, YYYY")
       heroImage {
