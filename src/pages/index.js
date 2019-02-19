@@ -6,7 +6,7 @@ import Hero from '../components/hero'
 import Layout from '../components/layout'
 import ArticlePreview from '../components/article-preview'
 import Footer from '../components/footer'
-import Navigation from '../components/navigation'
+import { Navigation } from '../components/navigation'
 
 class RootIndex extends React.Component {
   render() {
@@ -54,9 +54,9 @@ class RootIndex extends React.Component {
           <div className="hero-body">
             <div className="container">
               <div className="columns is-variable is-8 is-multiline">
-                {homepage.services.map(node => {
+                {homepage.services.map((node, index) => {
                   return (
-                    <div className="column is-one-third">
+                    <div key={index} className="column is-one-third">
                       <h1 className="title has-text-black is-4 has-text-weight-bold">
                         {node.title}
                       </h1>
