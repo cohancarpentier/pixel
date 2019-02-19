@@ -1,27 +1,45 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout'
-import ArticlePreview from '../components/article-preview'
+import ProjectPreview from '../components/project-preview'
 import projectsStyles from './projects.module.scss'
 
 class ProjectsIndex extends React.Component {
+  state = {
+    selectedTags: [],
+  }
+
+  renderProjects = projects =>
+    projects.map(({ node }, i) => {
+      const classes = []
+      if ((i + 1) % 6 === 0) {
+        classes.push(projectsStyles.spanCol2)
+      } else if ((i + 1) % 4 === 0) {
+        classes.push(projectsStyles.spanRow2)
+      } else if ((i + 1) % 2 === 0) {
+        classes.push(
+          [projectsStyles.spanCol2, projectsStyles.spanRow2].join(' ')
+        )
+      } else {
+        classes.push(projectsStyles.spanCol2)
+      }
+
+      return (
+        <div key={i} className={[classes, projectsStyles.gridItem].join(' ')}>
+          <ProjectPreview project={node} />
+        </div>
+      )
+    })
+
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const projects = get(this, 'props.data.allContentfulProject.edges')
-    const phoneNumber = get(this, 'props.data.site.siteMetadata.phoneNumber')
-    const phoneNumberPretty = get(
-      this,
-      'props.data.site.siteMetadata.phoneNumberPretty'
-    )
+    const siteMetadata = get(this, 'props.data.site.siteMetadata')
 
     return (
-      <Layout
-        location={this.props.location}
-        phoneNumber={phoneNumber}
-        phoneNumberPretty={phoneNumberPretty}
-      >
+      <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={siteTitle} />
         <div className="has-background-black" style={{ paddingTop: '8rem' }}>
           <div className="container is-fluid">
@@ -33,7 +51,7 @@ class ProjectsIndex extends React.Component {
               style={{ paddingTop: '2rem' }}
             >
               <div className="level-left">
-                <h1>Portfolio</h1>
+                <h1 className="has-text-weight-semibold">Portfolio</h1>
               </div>
               <div className="level-right">
                 <ul>
@@ -41,31 +59,9 @@ class ProjectsIndex extends React.Component {
                 </ul>
               </div>
             </div>
-
             <div className={projectsStyles.grid}>
-              <div className={projectsStyles.spanCol2}>Item 1</div>
-              <div
-                className={[
-                  projectsStyles.spanCol2,
-                  projectsStyles.spanRow2,
-                ].join(' ')}
-              >
-                Item 2
-              </div>
-              <div>Item 3</div>
-              <div className={projectsStyles.spanRow2}>Item 4</div>
-              <div>Item 5</div>
-              <div className={projectsStyles.spanCol2}>Item 6</div>
+              {this.renderProjects(projects)}
             </div>
-            <ul className="article-list">
-              {projects.map(({ node }) => {
-                return (
-                  <li key={node.slug}>
-                    <ArticlePreview article={node} />
-                  </li>
-                )
-              })}
-            </ul>
           </div>
         </div>
       </Layout>
@@ -82,6 +78,7 @@ export const pageQuery = graphql`
         title
         phoneNumber
         phoneNumberPretty
+        address
       }
     }
     allContentfulProject(sort: { fields: [publishDate], order: DESC }) {

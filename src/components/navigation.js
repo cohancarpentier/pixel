@@ -10,7 +10,7 @@ export class Navigation extends Component {
 
   render() {
     const { showMenu } = this.state
-    const { phoneNumber, phoneNumberPretty } = this.props
+    const { phoneNumber, phoneNumberPretty, address } = this.props
     return (
       <Fragment>
         <nav role="navigation" className={navStyles.navigation}>
@@ -129,6 +129,10 @@ export class Navigation extends Component {
                   >
                     {phoneNumberPretty}
                   </a>
+                  <div
+                    style={{ marginTop: '2rem' }}
+                    dangerouslySetInnerHTML={{ __html: address }}
+                  />
                 </div>
               </div>
             </div>

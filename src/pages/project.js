@@ -9,18 +9,10 @@ class ProjectTemplate extends React.Component {
   render() {
     const post = get(this.props, 'data.contentfulProject')
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
-    const phoneNumber = get(this, 'props.data.site.siteMetadata.phoneNumber')
-    const phoneNumberPretty = get(
-      this,
-      'props.data.site.siteMetadata.phoneNumberPretty'
-    )
+    const siteMetadata = get(this, 'props.data.site.siteMetadata')
 
     return (
-      <Layout
-        location={this.props.location}
-        phoneNumber={phoneNumber}
-        phoneNumberPretty={phoneNumberPretty}
-      >
+      <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={`${post.title} | ${siteTitle}`} />
 
         <Img alt={post.title} fluid={post.heroImage.fluid} />
@@ -54,6 +46,7 @@ export const pageQuery = graphql`
         title
         phoneNumber
         phoneNumberPretty
+        address
       }
     }
     contentfulProject(slug: { eq: $slug }) {

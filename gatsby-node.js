@@ -5,7 +5,7 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const project = path.resolve('./src/templates/project.js')
+    const project = path.resolve('./src/pages/project.js')
     resolve(
       graphql(
         `
@@ -19,7 +19,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-          `
+        `
       ).then(result => {
         if (result.errors) {
           console.log(result.errors)
@@ -27,12 +27,12 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         const projects = result.data.allContentfulProject.edges
-        projects.forEach((el) => {
+        projects.forEach(el => {
           createPage({
             path: `/project/${el.node.slug}/`,
             component: project,
             context: {
-              slug: el.node.slug
+              slug: el.node.slug,
             },
           })
         })

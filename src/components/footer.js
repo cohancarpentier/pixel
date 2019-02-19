@@ -6,7 +6,7 @@ import facebook from './../images/facebook.svg'
 
 export class Footer extends Component {
   render() {
-    const { phoneNumber, phoneNumberPretty } = this.props
+    const { phoneNumber, phoneNumberPretty, address } = this.props
     return (
       <footer className="has-background-black has-text-white">
         <div className="container is-fluid">
@@ -19,7 +19,7 @@ export class Footer extends Component {
                 alt={}
                 fluid={}
               />*/}
-              <div style={{ whiteSpace: 'pre' }}>address</div>
+              <div dangerouslySetInnerHTML={{ __html: address }} />
             </div>
             <div className="level-right">
               <a

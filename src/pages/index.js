@@ -9,20 +9,12 @@ import { Navigation } from '../components/navigation'
 class RootIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const phoneNumber = get(this, 'props.data.site.siteMetadata.phoneNumber')
-    const phoneNumberPretty = get(
-      this,
-      'props.data.site.siteMetadata.phoneNumberPretty'
-    )
+    const siteMetadata = get(this, 'props.data.site.siteMetadata')
     const projects = get(this, 'props.data.allContentfulProject.edges')
     const homepage = get(this, 'props.data.allContentfulHomePage.edges')[0].node
 
     return (
-      <Layout
-        location={this.props.location}
-        phoneNumber={phoneNumber}
-        phoneNumberPretty={phoneNumberPretty}
-      >
+      <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={siteTitle} />
         <section className="hero has-background-black is-fullheight">
           <div className="hero-body">
@@ -129,6 +121,7 @@ export const pageQuery = graphql`
         title
         phoneNumber
         phoneNumberPretty
+        address
       }
     }
     allContentfulHomePage {
