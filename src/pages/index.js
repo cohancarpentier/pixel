@@ -3,6 +3,7 @@ import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout'
+import p from './../images/p.svg'
 
 class RootIndex extends React.Component {
   render() {
@@ -111,28 +112,39 @@ class RootIndex extends React.Component {
             marginRight: '4rem',
           }}
         >
-          <div className="hero-body">
-            <div className="container">
-              <div className="columns" style={{ marginBottom: '4rem' }}>
-                <div className="column is-two-thirds">
-                  <h2 className="title has-text-white is-1 has-text-weight-bold">
-                    {homepage.promo.title}
-                  </h2>
+          <div
+            style={{
+              backgroundImage: `url(${p})`,
+              backgroundSize: '300px',
+              backgroundPosition: 'bottom right',
+              backgroundRepeat: 'no-repeat',
+              margin: '-1px',
+            }}
+          >
+            <div className="hero-body">
+              <div className="container">
+                <div className="columns" style={{ marginBottom: '4rem' }}>
+                  <div className="column is-two-thirds">
+                    <h2 className="title has-text-white is-1 has-text-weight-bold">
+                      {homepage.promo.title}
+                    </h2>
+                  </div>
                 </div>
-              </div>
-              <div className="level">
-                <div className="level-left">
-                  <h3
-                    className="title has-text-black is-4 has-text-weight-bold"
-                    dangerouslySetInnerHTML={{
-                      __html: homepage.promo.subtitle.childMarkdownRemark.html,
-                    }}
-                  />
-                </div>
-                <div className="level-right">
-                  <Link to={`/`}>
-                    <span>Mandatez-nous</span>
-                  </Link>
+                <div className="level">
+                  <div className="level-left">
+                    <h3
+                      className="title has-text-black is-4 has-text-weight-bold"
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          homepage.promo.subtitle.childMarkdownRemark.html,
+                      }}
+                    />
+                  </div>
+                  <div className="level-right">
+                    <Link to={`/`}>
+                      <span>Mandatez-nous</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
