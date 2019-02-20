@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Link } from 'gatsby'
 import navStyles from './navigation.module.scss'
 import menu from './../images/menu.svg'
+import logo from './../images/logo.svg'
 
 export class Navigation extends Component {
   state = {
@@ -42,7 +43,11 @@ export class Navigation extends Component {
         >
           <div className="container is-fluid">
             <div className="level">
-              <div className="level-left">logo</div>
+              <div className="level-left">
+                <Link to={`/`}>
+                  <img src={logo} alt="Logo" width={130} />
+                </Link>
+              </div>
               <div className="level-right">
                 <Link to={`/`}>
                   <span className={`${navStyles.ripple} has-text-white`}>

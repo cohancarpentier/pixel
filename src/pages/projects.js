@@ -38,6 +38,14 @@ class ProjectsIndex extends React.Component {
     const projects = get(this, 'props.data.allContentfulProject.edges')
     const siteMetadata = get(this, 'props.data.site.siteMetadata')
 
+    const tags = [
+      'Tous',
+      'Design graphique',
+      'Image de marque',
+      'Vidéo',
+      'Photographie',
+    ]
+
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={siteTitle} />
@@ -54,9 +62,11 @@ class ProjectsIndex extends React.Component {
                 <h1 className="has-text-weight-semibold">Portfolio</h1>
               </div>
               <div className="level-right">
-                <ul>
-                  <li>Tous</li>
-                </ul>
+                {tags.map(tag => (
+                  <a className="has-text-white" style={{ marginLeft: '3rem' }}>
+                    {tag}
+                  </a>
+                ))}
               </div>
             </div>
             <div className={projectsStyles.grid}>

@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import footerStyles from './footer.module.scss'
 import instagram from './../images/instagram.svg'
 import facebook from './../images/facebook.svg'
+import logo from './../images/logo.svg'
 
 export class Footer extends Component {
   render() {
@@ -16,7 +17,7 @@ export class Footer extends Component {
           >
             <div className="level-left">
               <Link style={{ marginRight: '3rem' }} to={`/`}>
-                Home
+                <img src={logo} alt="Logo" width={130} />
               </Link>
               {/*<Img
                 alt={}
