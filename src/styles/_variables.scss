@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,600,900');
 
 $family-sans-serif: 'Poppins', sans-serif;
-$purple: #8af6cc;
-$primary: $purple;
+$blue: #51c9f6;
+$purple: #d1bbfd;
+$primary: $blue;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
 
-$gradient: linear-gradient(to right, #d1bbfd, #51c9f6);
+$gradient: linear-gradient(to right, $purple, $blue);

@@ -19,10 +19,6 @@ export class Footer extends Component {
               <Link style={{ marginRight: '3rem' }} to={`/`}>
                 <img src={logo} alt="Logo" width={130} />
               </Link>
-              {/*<Img
-                alt={}
-                fluid={}
-              />*/}
               <div dangerouslySetInnerHTML={{ __html: address }} />
             </div>
             <div className="level-right">
