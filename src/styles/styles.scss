@@ -4,3 +4,14 @@
 .gatsby-image-wrapper {
   height: 100%;
 }
+
+.gradient {
+  background: $gradient;
+}
+
+.has-text-gradient {
+  background: $gradient;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

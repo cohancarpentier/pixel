@@ -3,8 +3,6 @@ import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout'
-import Footer from '../components/footer'
-import { Navigation } from '../components/navigation'
 
 class RootIndex extends React.Component {
   render() {
@@ -69,7 +67,7 @@ class RootIndex extends React.Component {
               <div className="columns">
                 <div className="column is-two-thirds">
                   <h1
-                    className="title has-text-primary is-1 has-text-weight-bold"
+                    className="title is-1 has-text-weight-bold has-text-gradient"
                     dangerouslySetInnerHTML={{
                       __html: homepage.slogan.childMarkdownRemark.html,
                     }}
@@ -106,7 +104,7 @@ class RootIndex extends React.Component {
         </section>
 
         <section
-          className="hero is-medium has-background-primary "
+          className="hero is-medium gradient"
           style={{
             marginBottom: '4rem',
             marginLeft: '4rem',
