@@ -4,6 +4,10 @@ import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout'
 import p from './../images/p.svg'
+import squares from './../images/squares.svg'
+import Slider from 'react-slick'
+import indexStyles from './index.module.scss'
+import Img from 'gatsby-image'
 
 class RootIndex extends React.Component {
   render() {
@@ -12,6 +16,15 @@ class RootIndex extends React.Component {
     const projects = get(this, 'props.data.allContentfulProject.edges')
     const homepage = get(this, 'props.data.allContentfulHomePage.edges')[0].node
 
+    console.log(projects)
+
+    const carouselSettings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    }
     console.log(homepage)
 
     return (
@@ -73,6 +86,90 @@ class RootIndex extends React.Component {
                       __html: homepage.slogan.childMarkdownRemark.html,
                     }}
                   />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          className="hero has-background-black"
+          style={{
+            marginLeft: '4rem',
+            marginRight: '4rem',
+          }}
+        >
+          <div className="hero-body">
+            <div className="container">
+              <div className="columns" style={{ marginBottom: '4rem' }}>
+                <div className="column is-two-fifths">
+                  <h2
+                    className="title has-text-white is-3 has-text-weight-bold"
+                    style={{ marginBottom: '5rem' }}
+                  >
+                    fondation alain choquette
+                  </h2>
+                  <Link
+                    to={'/projects'}
+                    style={{ marginRight: '0.5rem' }}
+                    className={indexStyles.gradientButton}
+                  >
+                    <span
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        padding: '0.55rem 3rem',
+                      }}
+                      className="has-background-black has-text-white"
+                    >
+                      Découvrir le projet
+                    </span>
+                  </Link>
+                </div>
+                <div
+                  className="column is-three-fifths"
+                  style={{ marginBottom: '-5rem' }}
+                >
+                  <Slider {...carouselSettings} style={{ height: '600px' }}>
+                    {projects.map(project => {
+                      if (project.node.heroImage.fluid.aspectRatio) {
+                        return (
+                          <Img
+                            alt={project.node.title}
+                            key={project.node.slug}
+                            fluid={project.node.heroImage.fluid}
+                          />
+                        )
+                      }
+                    })}
+                  </Slider>
+                </div>
+              </div>
+              <div className="level">
+                <div className="level-left has-text-white">
+                  <span>01</span>
+                  <span>05</span>
+                </div>
+                <div className="level-right">
+                  <Link
+                    to={'/projects'}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <img
+                      style={{ marginRight: '1rem' }}
+                      src={squares}
+                      alt="Squares"
+                      width={18}
+                      height={18}
+                    />
+                    <span className="has-text-white">
+                      Voir nos réalisations
+                    </span>
+                  </Link>
                 </div>
               </div>
             </div>

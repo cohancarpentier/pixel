@@ -15,3 +15,46 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.slick-slider {
+  height: 100%;
+  position: relative;
+  top: -5.5rem;
+}
+
+.slick-next,
+.slick-prev {
+  position: absolute;
+  top: unset;
+  left: unset;
+  bottom: 0;
+  right: 26px;
+  z-index: 99999;
+
+  &:before {
+    background: white;
+    content: '>';
+    color: $blue;
+    font-size: 1.5rem;
+    padding: 4px;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    opacity: 1;
+  }
+}
+
+.slick-prev {
+  right: 82px;
+
+  &:before {
+    content: '<';
+  }
+}
+
+.slick-dots li button:before {
+  color: white;
+}
