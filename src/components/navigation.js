@@ -6,14 +6,40 @@ import menu from './../images/menu.svg'
 export class Navigation extends Component {
   state = {
     showMenu: false,
+    scrolled: false,
+  }
+
+  handleScroll() {
+    if (pageYOffset > 0) {
+      this.setState({
+        scrolled: true,
+      })
+    } else {
+      this.setState({
+        scrolled: false,
+      })
+    }
+  }
+
+  componentDidMount = () => {
+    window.addEventListener('scroll', event => {
+      this.handleScroll()
+    })
   }
 
   render() {
-    const { showMenu } = this.state
+    const { showMenu, scrolled } = this.state
     const { phoneNumber, phoneNumberPretty, address } = this.props
+
     return (
       <Fragment>
-        <nav role="navigation" className={navStyles.navigation}>
+        <nav
+          role="navigation"
+          className={[
+            scrolled ? navStyles.hasBackgroundBlack : null,
+            navStyles.navigation,
+          ].join(' ')}
+        >
           <div className="container is-fluid">
             <div className="level">
               <div className="level-left">logo</div>
