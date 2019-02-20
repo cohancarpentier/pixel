@@ -79,7 +79,7 @@ export class Navigation extends Component {
                 <div className="column is-half">
                   <ul>
                     <li>
-                      <Link to={`/`}>
+                      <Link to={`/team`}>
                         <span
                           className={`${
                             navStyles.menuItem

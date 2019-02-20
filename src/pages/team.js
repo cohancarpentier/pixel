@@ -5,7 +5,7 @@ import Helmet from 'react-helmet'
 import Layout from '../components/layout'
 import p from './../images/p.svg'
 
-class RootIndex extends React.Component {
+class TeamIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const siteMetadata = get(this, 'props.data.site.siteMetadata')
