@@ -106,7 +106,7 @@ class ProjectTemplate extends React.Component {
                   </h1>
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: project.body.childMarkdownRemark.html,
+                      __html: project.description.childMarkdownRemark.html,
                     }}
                   />
                 </div>
@@ -238,15 +238,15 @@ export const pageQuery = graphql`
     }
     contentfulProject(slug: { eq: $slug }) {
       title
+      description {
+        childMarkdownRemark {
+          html
+        }
+      }
       publishDate(formatString: "MMMM Do, YYYY")
       heroImage {
         fluid(maxWidth: 1180, background: "rgb:000000") {
           ...GatsbyContentfulFluid_withWebp
-        }
-      }
-      body {
-        childMarkdownRemark {
-          html
         }
       }
     }
