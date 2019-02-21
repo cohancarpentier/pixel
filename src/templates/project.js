@@ -48,8 +48,6 @@ class ProjectTemplate extends React.Component {
     const siteMetadata = get(this, 'props.data.site.siteMetadata')
     const { descriptionOpened, currentProjectIndex } = this.state
 
-    console.log(currentProjectIndex)
-
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={`${project.title} | ${siteTitle}`} />
@@ -111,14 +109,34 @@ class ProjectTemplate extends React.Component {
                   />
                 </div>
                 <div className="column is-3 is-offset-2">
-                  <h2 className="has-text-weight-bold">Client</h2>
-                  <p>{project.client}</p>
-                  <hr style={{ backgroundColor: 'rgba(255,255,255,0.1)' }} />
-                  <h2 className="has-text-weight-bold">Services</h2>
-                  <p>{project.client}</p>
-                  <hr style={{ backgroundColor: 'rgba(255,255,255,0.1)' }} />
-                  <h2 className="has-text-weight-bold">Autres informations</h2>
-                  <p>{project.client}</p>
+                  {project.client ? (
+                    <>
+                      <h2 className="has-text-weight-bold">Client</h2>
+                      <p>{project.client}</p>
+                      <hr
+                        style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
+                      />
+                    </>
+                  ) : null}
+
+                  {project.services ? (
+                    <>
+                      <h2 className="has-text-weight-bold">Services</h2>
+                      <p>{project.services}</p>
+                      <hr
+                        style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
+                      />
+                    </>
+                  ) : null}
+
+                  {project.otherInfo ? (
+                    <>
+                      <h2 className="has-text-weight-bold">
+                        Autres informations
+                      </h2>
+                      <p>{project.otherInfo}</p>
+                    </>
+                  ) : null}
                 </div>
               </div>
             </div>
@@ -238,6 +256,9 @@ export const pageQuery = graphql`
     }
     contentfulProject(slug: { eq: $slug }) {
       title
+      client
+      services
+      otherInfo
       description {
         childMarkdownRemark {
           html

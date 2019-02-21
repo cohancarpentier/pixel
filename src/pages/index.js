@@ -301,7 +301,7 @@ class RootIndex extends React.Component {
                     />
                   </div>
                   <div className="level-right">
-                    <Link to={`/`} className={indexStyles.button}>
+                    <Link to={`/mandate-us`} className={indexStyles.button}>
                       <span className="has-text-black">Mandatez-nous</span>
                     </Link>
                   </div>

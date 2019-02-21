@@ -52,8 +52,20 @@ export class Navigation extends Component {
                 </Link>
               </div>
               <div className="level-right">
-                <Link to={`/`} className={navStyles.mobileButton}>
-                  <span className={`${navStyles.ripple} has-text-white`}>
+                <Link
+                  to={'/mandate-us'}
+                  style={{ marginRight: '0.5rem' }}
+                  className={navStyles.gradientButton}
+                >
+                  <span
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      padding: '0.55rem 3rem',
+                    }}
+                    className="has-background-black has-text-white"
+                  >
                     Mandatez-nous
                   </span>
                 </Link>

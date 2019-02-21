@@ -13,8 +13,6 @@ class TeamIndex extends React.Component {
     const siteMetadata = get(this, 'props.data.site.siteMetadata')
     const agency = get(this, 'props.data.allContentfulAgencyPage.edges')[0].node
 
-    console.log(agency)
-
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={siteTitle} />
