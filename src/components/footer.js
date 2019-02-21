@@ -87,6 +87,7 @@ export class Footer extends Component {
               <a
                 href="https://www.facebook.com/pixelfirme/"
                 target="_blank"
+                rel="noopener"
                 style={{ marginRight: '1.5rem' }}
               >
                 <img width={32} height={32} src={facebook} alt="Facebook" />
@@ -94,6 +95,7 @@ export class Footer extends Component {
               <a
                 href="https://www.instagram.com/pixel_firme_creative"
                 target="_blank"
+                rel="noopener"
                 style={{ marginRight: '1.5rem' }}
               >
                 <img width={32} height={32} src={instagram} alt="Instagram" />
@@ -101,6 +103,7 @@ export class Footer extends Component {
               <a
                 href="https://www.linkedin.com/company/pixelfirmecreative"
                 target="_blank"
+                rel="noopener"
               >
                 <img width={32} height={32} src={linkedin} alt="LinkedIn" />
               </a>
