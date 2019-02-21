@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import footerStyles from './footer.module.scss'
 import instagram from './../images/instagram.svg'
 import facebook from './../images/facebook.svg'
+import linkedin from './../images/linkedin.svg'
 import logo from './../images/logo.svg'
 
 export class Footer extends Component {
@@ -89,8 +90,7 @@ export class Footer extends Component {
                 href="https://www.linkedin.com/company/pixelfirmecreative"
                 target="_blank"
               >
-                Linked in
-                {/*<img width={32} height={32} src={instagram} alt="Instagram" />*/}
+                <img width={32} height={32} src={linkedin} alt="LinkedIn" />
               </a>
             </div>
           </div>
