@@ -71,11 +71,26 @@ export class Footer extends Component {
               </Link>
             </div>
             <div className="level-right">
-              <a href="https://google.com" style={{ marginRight: '1.5rem' }}>
+              <a
+                href="https://www.facebook.com/pixelfirme/"
+                target="_blank"
+                style={{ marginRight: '1.5rem' }}
+              >
                 <img width={32} height={32} src={facebook} alt="Facebook" />
               </a>
-              <a href="https://google.com">
+              <a
+                href="https://www.instagram.com/pixel_firme_creative"
+                target="_blank"
+                style={{ marginRight: '1.5rem' }}
+              >
                 <img width={32} height={32} src={instagram} alt="Instagram" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/pixelfirmecreative"
+                target="_blank"
+              >
+                Linked in
+                {/*<img width={32} height={32} src={instagram} alt="Instagram" />*/}
               </a>
             </div>
           </div>

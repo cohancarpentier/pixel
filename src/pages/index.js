@@ -8,10 +8,14 @@ import squares from './../images/squares.svg'
 import Slider from 'react-slick'
 import indexStyles from './index.module.scss'
 import Img from 'gatsby-image'
+import Fade from 'react-reveal/Fade'
+import Zoom from 'react-reveal/Zoom'
+import Slide from 'react-reveal/Slide'
 
 class RootIndex extends React.Component {
   state = {
     selectedProjectSlug: '',
+    selectedProjectTitle: '',
     projects: null,
   }
 
@@ -19,19 +23,16 @@ class RootIndex extends React.Component {
     const projects = get(this, 'props.data.allContentfulProject.edges')
     this.setState({
       selectedProjectSlug: projects[0].node.slug,
+      selectedProjectTitle: projects[0].node.title,
     })
   }
 
   handleSlideChange = (oldIndex, newIndex) => {
-    //console.log(oldIndex, newIndex)
     const projects = get(this, 'props.data.allContentfulProject.edges')
-    console.log(projects)
-    this.setState(
-      {
-        selectedProjectSlug: projects[newIndex].node.slug,
-      },
-      () => console.log(this.state)
-    )
+    this.setState({
+      selectedProjectSlug: projects[newIndex].node.slug,
+      selectedProjectTitle: projects[newIndex].node.title,
+    })
   }
 
   render() {
@@ -39,21 +40,16 @@ class RootIndex extends React.Component {
     const siteMetadata = get(this, 'props.data.site.siteMetadata')
     const projects = get(this, 'props.data.allContentfulProject.edges')
     const homepage = get(this, 'props.data.allContentfulHomePage.edges')[0].node
-    const { selectedProjectSlug } = this.state
-
-    //console.log(this.state)
-
-    //console.log(projects)
+    const { selectedProjectSlug, selectedProjectTitle } = this.state
 
     const carouselSettings = {
-      dots: true,
+      dots: false,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
       beforeChange: this.handleSlideChange,
     }
-    console.log(homepage)
 
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
@@ -90,20 +86,33 @@ class RootIndex extends React.Component {
               <source src={homepage.heroVideo.file.url} type="video/webm" />
             </video>
           </div>
+          {console.log(
+            homepage.hero.childMarkdownRemark.html
+              .replace(/(<p[^>]+?>|<p>|<\/p>)/gim, '')
+              .split('\n')
+          )}
           <div className="hero-body">
-            <div className="container is-fluid">
-              <h1
-                className="title is-1 has-text-weight-bold has-text-white"
-                style={{
-                  whiteSpace: 'pre',
-                  fontSize: '4.5rem',
-                  lineHeight: 1.45,
-                }}
-                dangerouslySetInnerHTML={{
-                  __html: homepage.hero.childMarkdownRemark.html,
-                }}
-              />
-            </div>
+            <Fade right cascade>
+              <div className="container is-fluid">
+                {homepage.hero.childMarkdownRemark.html
+                  .replace(/(<p[^>]+?>|<p>|<\/p>)/gim, '')
+                  .split('\n')
+                  .map((el, index) => {
+                    return (
+                      <h2
+                        className="title is-1 has-text-weight-bold has-text-white"
+                        style={{
+                          fontSize: '4.5rem',
+                          lineHeight: 1.45,
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: el,
+                        }}
+                      />
+                    )
+                  })}
+              </div>
+            </Fade>
           </div>
         </section>
 
@@ -112,12 +121,14 @@ class RootIndex extends React.Component {
             <div className="container">
               <div className="columns">
                 <div className="column is-two-thirds">
-                  <h1
-                    className="title is-1 has-text-weight-bold has-text-gradient"
-                    dangerouslySetInnerHTML={{
-                      __html: homepage.slogan.childMarkdownRemark.html,
-                    }}
-                  />
+                  <Fade>
+                    <h1
+                      className="title is-1 has-text-weight-bold has-text-gradient"
+                      dangerouslySetInnerHTML={{
+                        __html: homepage.slogan.childMarkdownRemark.html,
+                      }}
+                    />
+                  </Fade>
                 </div>
               </div>
             </div>
@@ -139,7 +150,7 @@ class RootIndex extends React.Component {
                     className="title has-text-white is-3 has-text-weight-bold"
                     style={{ marginBottom: '5rem' }}
                   >
-                    fondation alain choquette
+                    {selectedProjectTitle}
                   </h2>
                   <Link
                     to={`/projects/${selectedProjectSlug}`}
@@ -211,24 +222,26 @@ class RootIndex extends React.Component {
         <section className="hero has-background-white is-medium">
           <div className="hero-body">
             <div className="container">
-              <div className="columns is-variable is-8 is-multiline">
-                {homepage.services.map((node, index) => {
-                  return (
-                    <div key={index} className="column is-one-third">
-                      <h1 className="title has-text-black is-4 has-text-weight-bold">
-                        {node.title}
-                      </h1>
-                      <hr />
-                      <div
-                        style={{ whiteSpace: 'pre', marginBottom: '4rem' }}
-                        dangerouslySetInnerHTML={{
-                          __html: node.description.childMarkdownRemark.html,
-                        }}
-                      />
-                    </div>
-                  )
-                })}
-              </div>
+              <Slide bottom cascade>
+                <div className="columns is-variable is-8 is-multiline">
+                  {homepage.services.map((node, index) => {
+                    return (
+                      <div key={index} className="column is-one-third">
+                        <h1 className="title has-text-black is-4 has-text-weight-bold">
+                          {node.title}
+                        </h1>
+                        <hr />
+                        <div
+                          style={{ whiteSpace: 'pre', marginBottom: '4rem' }}
+                          dangerouslySetInnerHTML={{
+                            __html: node.description.childMarkdownRemark.html,
+                          }}
+                        />
+                      </div>
+                    )
+                  })}
+                </div>
+              </Slide>
             </div>
           </div>
         </section>
