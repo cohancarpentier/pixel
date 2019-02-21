@@ -97,7 +97,10 @@ class RootIndex extends React.Component {
               <source src={homepage.heroVideo.file.url} type="video/webm" />
             </video>
           </div>
-          <div className="hero-body">
+          <div
+            className="hero-body"
+            style={{ backgroundColor: 'rgba(0,0,0,0.75)' }}
+          >
             <Fade right cascade>
               <div className="container is-fluid">
                 {homepage.hero.childMarkdownRemark.html
