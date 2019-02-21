@@ -123,7 +123,7 @@ export class Navigation extends Component {
                       </Link>
                     </li>
                     <li>
-                      <Link to={`/`}>
+                      <Link to={`/studio-rental`}>
                         <span
                           className={`title is-6 has-text-weight-semibold has-text-black`}
                         >
@@ -132,7 +132,7 @@ export class Navigation extends Component {
                       </Link>
                     </li>
                     <li>
-                      <Link to={`/`}>
+                      <Link to={`/prizes-and-mentions`}>
                         <span
                           className={`title is-6 has-text-weight-semibold has-text-black`}
                         >

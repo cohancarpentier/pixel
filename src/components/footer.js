@@ -33,7 +33,7 @@ export class Footer extends Component {
           <hr style={{ margin: 0, backgroundColor: 'rgba(255,255,255,0.1' }} />
           <div className="level" style={{ height: '100px' }}>
             <div className="level-left">
-              <Link to={`/`}>
+              <Link to={`/studio-rental`}>
                 <span
                   className={`${
                     footerStyles.link
@@ -42,7 +42,7 @@ export class Footer extends Component {
                   Location de studio
                 </span>
               </Link>
-              <Link to={`/`}>
+              <Link to={`/prizes-and-mentions`}>
                 <span
                   className={`${
                     footerStyles.link
@@ -60,7 +60,7 @@ export class Footer extends Component {
                   Jobs
                 </span>
               </Link>
-              <Link to={`/`}>
+              <Link to={`/contact`}>
                 <span
                   className={`${
                     footerStyles.link
