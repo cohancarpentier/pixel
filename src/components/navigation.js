@@ -125,9 +125,7 @@ export class Navigation extends Component {
                     <li>
                       <Link to={`/`}>
                         <span
-                          className={`${
-                            navStyles.menuItem
-                          } title is-6 has-text-weight-semibold has-text-black`}
+                          className={`title is-6 has-text-weight-semibold has-text-black`}
                         >
                           Location de studio
                         </span>
@@ -136,9 +134,7 @@ export class Navigation extends Component {
                     <li>
                       <Link to={`/`}>
                         <span
-                          className={`${
-                            navStyles.menuItem
-                          } title is-6 has-text-weight-semibold has-text-black`}
+                          className={`title is-6 has-text-weight-semibold has-text-black`}
                         >
                           Prix et mentions
                         </span>

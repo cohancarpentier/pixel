@@ -1,21 +1,223 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout'
-import p from './../images/p.svg'
+import teamStyles from './team.module.scss'
+import p from './../images/p-colored.svg'
+import Img from 'gatsby-image'
 
 class TeamIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const siteMetadata = get(this, 'props.data.site.siteMetadata')
-    const projects = get(this, 'props.data.allContentfulProject.edges')
-    const homepage = get(this, 'props.data.allContentfulHomePage.edges')[0].node
+    const agency = get(this, 'props.data.allContentfulAgencyPage.edges')[0].node
+
+    console.log(agency)
 
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={siteTitle} />
-        team
+        <section className="hero is-large">
+          <div
+            className="hero-video"
+            style={{
+              height: '100%',
+              width: '100%',
+              //background: 'url(../img/index-image.jpg) no-repeat center center',
+              backgroundSize: 'cover',
+            }}
+          >
+            <video
+              //poster="img/bgimg.jpg"
+              playsInline
+              autoPlay
+              muted
+              loop
+              style={{
+                height: '100%',
+                width: '100%',
+                objectFit: 'cover',
+                zIndex: '-100',
+                right: 0,
+                bottom: 0,
+                /*background:
+                  'url(../img/index-image.jpg) no-repeat center center',*/
+                backgroundSize: 'cover',
+                overflow: 'hidden',
+              }}
+            >
+              <source src={agency.heroVideo.file.url} type="video/webm" />
+            </video>
+          </div>
+          <div className="container is-fluid" style={{ paddingTop: '8rem' }}>
+            <hr
+              style={{ backgroundColor: 'rgba(255,255,255,0.1', margin: 0 }}
+            />
+            <div
+              className="level has-text-white has-text-weight-semibold"
+              style={{ paddingTop: '2rem' }}
+            >
+              <div className="level-left">
+                <h1 className="has-text-weight-semibold">{agency.title}</h1>
+              </div>
+              <div className="level-right" />
+            </div>
+          </div>
+
+          <div
+            className="hero-body"
+            style={{ paddingTop: '7rem', paddingBottom: '12rem' }}
+          >
+            <div className="container">
+              <div className="columns">
+                <div className="column is-half">
+                  <h1 className="title is-1 has-text-weight-bold has-text-gradient">
+                    {agency.heroTitle}
+                  </h1>
+                </div>
+              </div>
+              <div
+                className="has-text-white"
+                dangerouslySetInnerHTML={{
+                  __html: agency.heroDescription.childMarkdownRemark.html,
+                }}
+              />
+              <div
+                className="columns is-multiline"
+                style={{ position: 'relative' }}
+              >
+                <div className="column is-10">
+                  <div className={teamStyles.fakeVideo} />
+                </div>
+                <div
+                  className="column is-10 is-offset-2"
+                  style={{
+                    position: 'absolute',
+                    top: '6.5rem',
+                    zIndex: 2,
+                  }}
+                >
+                  <div
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                      //background: 'url(../img/index-image.jpg) no-repeat center center',
+                      backgroundSize: 'cover',
+                    }}
+                  >
+                    <video
+                      //poster="img/bgimg.jpg"
+                      playsInline
+                      autoPlay
+                      muted
+                      loop
+                      style={{
+                        height: '100%',
+                        width: '100%',
+                        objectFit: 'cover',
+                        zIndex: '-100',
+                        right: 0,
+                        bottom: 0,
+                        /*background:
+                  'url(../img/index-image.jpg) no-repeat center center',*/
+                        backgroundSize: 'cover',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <source
+                        src={agency.agencyVideo.file.url}
+                        type="video/webm"
+                      />
+                    </video>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="hero has-background-white is-medium">
+          <div
+            className="hero-body"
+            style={{ paddingTop: 0, paddingBottom: '14rem' }}
+          >
+            <div className="container">
+              <div className="columns">
+                <div className="column is-half">
+                  <h1 className="title is-5 has-text-weight-bold has-text-black">
+                    {agency.contentTitle}
+                  </h1>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        agency.contentDescription.childMarkdownRemark.html,
+                    }}
+                  />
+                </div>
+                <div className="column is-half">
+                  <img
+                    src={p}
+                    alt="P"
+                    width={260}
+                    style={{
+                      position: 'absolute',
+                      top: '-7rem',
+                      right: '-9rem',
+                      zIndex: 1,
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          className="hero has-background-black"
+          style={{
+            marginLeft: '4rem',
+            marginRight: '4rem',
+            marginBottom: '4rem',
+          }}
+        >
+          <div className="hero-body">
+            <div className="container">
+              <div
+                className="columns is-multiline is-variable is-2"
+                style={{
+                  position: 'relative',
+                  top: '-6rem',
+                  marginBottom: '-4rem',
+                }}
+              >
+                {agency.employees.map((employee, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="column is-half"
+                      style={{ marginBottom: '4rem' }}
+                    >
+                      <Img alt="" fluid={employee.photo.fluid} />
+                      <h2
+                        className="has-text-gradient title is-5"
+                        style={{
+                          display: 'inline-block',
+                          margin: 0,
+                          marginTop: '1rem',
+                        }}
+                      >
+                        {employee.name}
+                      </h2>
+                      <p className="has-text-white is-italic">
+                        {employee.role}
+                      </p>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
       </Layout>
     )
   }
@@ -33,10 +235,12 @@ export const pageQuery = graphql`
         address
       }
     }
-    allContentfulHomePage {
+    allContentfulAgencyPage {
       edges {
         node {
-          hero {
+          title
+          heroTitle
+          heroDescription {
             childMarkdownRemark {
               html
             }
@@ -46,24 +250,23 @@ export const pageQuery = graphql`
               url
             }
           }
-          slogan {
+          agencyVideo {
+            file {
+              url
+            }
+          }
+          contentTitle
+          contentDescription {
             childMarkdownRemark {
               html
             }
           }
-          promo {
-            title
-            subtitle {
-              childMarkdownRemark {
-                html
-              }
-            }
-          }
-          services {
-            title
-            description {
-              childMarkdownRemark {
-                html
+          employees {
+            name
+            role
+            photo {
+              fluid(maxHeight: 320) {
+                ...GatsbyContentfulFluid_withWebp
               }
             }
           }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="-3281.334 -2644.24 7204 5644" width="7204" height="5644" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient-6" gradientUnits="userSpaceOnUse" x1="2352" y1="-5" x2="2352" y2="5639" gradientTransform="matrix(0, 0.862719, -0.862719, 0, 4729.797862, 1247.044761)">
+      <stop offset="0" style="stop-color: rgb(81, 201, 246);"/>
+      <stop offset="1" style="stop-color: rgb(209, 187, 253);"/>
+    </linearGradient>
+  </defs>
+  <path class="fil0" d="M 2859 4276 C 2658 4276 2459 4239 2264 4164 C 2068 4089 1908 3985 1784 3851 L 1769 3851 L 1769 5639 L -1 5639 L -1 103 L 1676 103 L 1676 512 L 1692 512 C 1841 342 2022 213 2233 126 C 2444 38 2650 -5 2851 -5 C 3155 -5 3423 56 3655 180 C 3887 304 4080 466 4234 667 C 4389 868 4505 1095 4585 1347 C 4665 1599 4705 1857 4705 2120 C 4705 2388 4665 2651 4585 2909 C 4505 3166 4388 3397 4234 3600 C 4080 3804 3887 3967 3658 4091 C 3429 4215 3162 4277 2858 4277 Z" style="paint-order: fill; fill: url(#gradient-6);" transform="matrix(1, 0, 0, 1, -3280.333984, -2639.239746)"/>
+  <polygon class="fil0" points="5370 4167 7203 4167 7203 2335 5370 2335" style="paint-order: fill; fill: rgb(81, 201, 246);" transform="matrix(1, 0, 0, 1, -3280.333984, -2639.239746)"/>
+</svg>
