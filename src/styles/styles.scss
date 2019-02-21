@@ -54,3 +54,17 @@
     content: '<';
   }
 }
+
+@media screen and (max-width: 768px) {
+  .hero-video {
+    display: block;
+  }
+
+  .level {
+    display: flex;
+  }
+
+  .level-left + .level-right {
+    margin-top: unset;
+  }
+}

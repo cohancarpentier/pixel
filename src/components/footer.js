@@ -10,29 +10,41 @@ export class Footer extends Component {
   render() {
     const { phoneNumber, phoneNumberPretty, address } = this.props
     return (
-      <footer className="has-background-black has-text-white">
+      <footer
+        className="has-background-black has-text-white"
+        style={{ paddingLeft: '1.5rem', paddingRight: '1.5rem' }}
+      >
         <div className="container is-fluid">
           <div
-            className="level"
+            className={`${footerStyles.levelBlock} level`}
             style={{ margin: 0, paddingTop: '4rem', paddingBottom: '4rem' }}
           >
             <div className="level-left">
-              <Link style={{ marginRight: '3rem' }} to={`/`}>
+              <Link
+                className={footerStyles.mobileMargin}
+                style={{ marginRight: '3rem' }}
+                to={`/`}
+              >
                 <img src={logo} alt="Logo" width={130} />
               </Link>
-              <div dangerouslySetInnerHTML={{ __html: address }} />
+              <div
+                className={footerStyles.mobileMargin}
+                dangerouslySetInnerHTML={{ __html: address }}
+              />
             </div>
             <div className="level-right">
               <a
                 href={`tel:${phoneNumber}`}
-                className="title is-1 has-text-weight-bold has-text-white"
+                className={`${
+                  footerStyles.mobileTitle
+                } title is-1 has-text-weight-bold has-text-white`}
               >
                 {phoneNumberPretty}
               </a>
             </div>
           </div>
           <hr style={{ margin: 0, backgroundColor: 'rgba(255,255,255,0.1' }} />
-          <div className="level" style={{ height: '100px' }}>
+          <div className={`${footerStyles.levelBlock} level`}>
             <div className="level-left">
               <Link to={`/studio-rental`}>
                 <span

@@ -6,25 +6,57 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import squares from './../images/squares.svg'
 import projectStyles from './project.module.scss'
+import Fade from 'react-reveal/Slide'
 
 class ProjectTemplate extends React.Component {
   state = {
     descriptionOpened: false,
+    currentProjectIndex: 0,
+  }
+
+  componentWillMount() {
+    let projects = get(this, 'props.data.allContentfulProject.edges')
+    projects = projects.filter(
+      (thing, index, self) =>
+        index === self.findIndex(t => t.node.slug === thing.node.slug)
+    )
+    let currentProjectIndex = []
+
+    const projectSlug = window.location.href.substr(
+      window.location.href.lastIndexOf('/') + 1
+    )
+
+    projects.filter((project, index) => {
+      if (project.node.slug === projectSlug) {
+        currentProjectIndex.push(index)
+      }
+    })
+
+    this.setState({
+      currentProjectIndex: currentProjectIndex[0],
+    })
   }
 
   render() {
     const project = get(this.props, 'data.contentfulProject')
+    let projects = get(this, 'props.data.allContentfulProject.edges')
+    projects = projects.filter(
+      (thing, index, self) =>
+        index === self.findIndex(t => t.node.slug === thing.node.slug)
+    )
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     const siteMetadata = get(this, 'props.data.site.siteMetadata')
-    const { descriptionOpened } = this.state
+    const { descriptionOpened, currentProjectIndex } = this.state
 
-    console.log(project)
+    console.log(currentProjectIndex)
 
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={`${project.title} | ${siteTitle}`} />
-
-        <div className="has-background-black" style={{ paddingTop: '8rem' }}>
+        <div
+          className="has-background-black"
+          style={{ paddingTop: '8rem', position: 'relative', zIndex: 2 }}
+        >
           <div className="container is-fluid">
             <hr
               style={{ backgroundColor: 'rgba(255,255,255,0.1', margin: 0 }}
@@ -58,8 +90,7 @@ class ProjectTemplate extends React.Component {
             </div>
           </div>
         </div>
-
-        {descriptionOpened ? (
+        <Fade top collapse when={descriptionOpened} style={{ zIndex: 1 }}>
           <div className="has-background-black">
             <div className="container is-fluid">
               <hr
@@ -92,8 +123,7 @@ class ProjectTemplate extends React.Component {
               </div>
             </div>
           </div>
-        ) : null}
-
+        </Fade>
         <div>
           <div
             className="container has-background-white is-fluid"
@@ -115,38 +145,49 @@ class ProjectTemplate extends React.Component {
 
             <div className="level" style={{ marginTop: '4rem' }}>
               <div className="level-left">
-                <Link
-                  to={'/projects'}
-                  style={{ marginRight: '0.5rem' }}
-                  className={projectStyles.gradientButton}
-                >
-                  <span
-                    style={{
-                      width: 38,
-                      height: 38,
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                    className="has-background-white has-text-primary"
+                {projects[currentProjectIndex - 1] ? (
+                  <Link
+                    to={`/projects/${
+                      projects[currentProjectIndex - 1].node.slug
+                    }`}
+                    style={{ marginRight: '0.5rem' }}
+                    className={projectStyles.gradientButton}
                   >
-                    &lt;
-                  </span>
-                </Link>
-                <Link to={'/projects'} className={projectStyles.gradientButton}>
-                  <span
-                    style={{
-                      width: 38,
-                      height: 38,
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                    className="has-background-white has-text-primary"
+                    <span
+                      style={{
+                        width: 38,
+                        height: 38,
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                      className="has-background-white has-text-primary"
+                    >
+                      &lt;
+                    </span>
+                  </Link>
+                ) : null}
+                {projects[currentProjectIndex + 1] ? (
+                  <Link
+                    to={`/projects/${
+                      projects[currentProjectIndex + 1].node.slug
+                    }`}
+                    className={projectStyles.gradientButton}
                   >
-                    &gt;
-                  </span>
-                </Link>
+                    <span
+                      style={{
+                        width: 38,
+                        height: 38,
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                      className="has-background-white has-text-primary"
+                    >
+                      &gt;
+                    </span>
+                  </Link>
+                ) : null}
               </div>
               <div className="level-right">
                 <Link
@@ -184,6 +225,15 @@ export const pageQuery = graphql`
         phoneNumber
         phoneNumberPretty
         address
+      }
+    }
+    allContentfulProject(sort: { fields: [publishDate], order: DESC }) {
+      edges {
+        node {
+          title
+          slug
+          publishDate(formatString: "MMMM Do, YYYY")
+        }
       }
     }
     contentfulProject(slug: { eq: $slug }) {

@@ -5,14 +5,14 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: 40px 0;
+  padding: 40px 1.5rem;
   z-index: 999999;
   transition: all 0.2s ease-in-out;
 }
 
 .hasBackgroundBlack {
   background-color: black;
-  padding: 20px 0;
+  padding: 20px 1.5rem;
 }
 
 .menu {
@@ -23,7 +23,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 3;
+  z-index: 9999999;
   display: flex;
   align-items: center;
 }
@@ -68,5 +68,23 @@
     bottom: -12px;
     left: -12px;
     opacity: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mobileTitle {
+    font-size: 1.75rem !important;
+  }
+
+  .menuItem {
+    font-size: 1.75rem !important;
+  }
+
+  .mobileNav {
+    font-size: 1.75rem !important;
+  }
+
+  .mobileButton {
+    display: none;
   }
 }

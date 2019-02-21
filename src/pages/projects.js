@@ -13,24 +13,26 @@ class ProjectsIndex extends React.Component {
 
   renderProjects = projects =>
     projects.map(({ node }, i) => {
-      const classes = []
-      if ((i + 1) % 6 === 0) {
-        classes.push(projectsStyles.spanCol2)
-      } else if ((i + 1) % 4 === 0) {
-        classes.push(projectsStyles.spanRow2)
-      } else if ((i + 1) % 2 === 0) {
-        classes.push(
-          [projectsStyles.spanCol2, projectsStyles.spanRow2].join(' ')
-        )
-      } else {
-        classes.push(projectsStyles.spanCol2)
-      }
+      if (node.heroImage.fluid.aspectRatio) {
+        const classes = []
+        if ((i + 1) % 6 === 0) {
+          classes.push(projectsStyles.spanCol2)
+        } else if ((i + 1) % 4 === 0) {
+          classes.push(projectsStyles.spanRow2)
+        } else if ((i + 1) % 2 === 0) {
+          classes.push(
+            [projectsStyles.spanCol2, projectsStyles.spanRow2].join(' ')
+          )
+        } else {
+          classes.push(projectsStyles.spanCol2)
+        }
 
-      return (
-        <div key={i} className={[classes, projectsStyles.gridItem].join(' ')}>
-          <ProjectPreview project={node} />
-        </div>
-      )
+        return (
+          <div key={i} className={[classes, projectsStyles.gridItem].join(' ')}>
+            <ProjectPreview project={node} />
+          </div>
+        )
+      }
     })
 
   render() {
@@ -62,8 +64,12 @@ class ProjectsIndex extends React.Component {
                 <h1 className="has-text-weight-semibold">Portfolio</h1>
               </div>
               <div className="level-right">
-                {tags.map(tag => (
-                  <a className="has-text-white" style={{ marginLeft: '3rem' }}>
+                {tags.map((tag, index) => (
+                  <a
+                    key={index}
+                    className="has-text-white"
+                    style={{ marginLeft: '3rem' }}
+                  >
                     {tag}
                   </a>
                 ))}
@@ -97,7 +103,6 @@ export const pageQuery = graphql`
           title
           slug
           publishDate(formatString: "MMMM Do, YYYY")
-          tags
           heroImage {
             fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
               ...GatsbyContentfulFluid_withWebp

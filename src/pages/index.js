@@ -9,7 +9,6 @@ import Slider from 'react-slick'
 import indexStyles from './index.module.scss'
 import Img from 'gatsby-image'
 import Fade from 'react-reveal/Fade'
-import Zoom from 'react-reveal/Zoom'
 import Slide from 'react-reveal/Slide'
 
 class RootIndex extends React.Component {
@@ -20,7 +19,11 @@ class RootIndex extends React.Component {
   }
 
   componentDidMount() {
-    const projects = get(this, 'props.data.allContentfulProject.edges')
+    let projects = get(this, 'props.data.allContentfulProject.edges')
+    projects = projects.filter(
+      (thing, index, self) =>
+        index === self.findIndex(t => t.node.slug === thing.node.slug)
+    )
     this.setState({
       selectedProjectSlug: projects[0].node.slug,
       selectedProjectTitle: projects[0].node.title,
@@ -28,7 +31,11 @@ class RootIndex extends React.Component {
   }
 
   handleSlideChange = (oldIndex, newIndex) => {
-    const projects = get(this, 'props.data.allContentfulProject.edges')
+    let projects = get(this, 'props.data.allContentfulProject.edges')
+    projects = projects.filter(
+      (thing, index, self) =>
+        index === self.findIndex(t => t.node.slug === thing.node.slug)
+    )
     this.setState({
       selectedProjectSlug: projects[newIndex].node.slug,
       selectedProjectTitle: projects[newIndex].node.title,
@@ -38,7 +45,11 @@ class RootIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const siteMetadata = get(this, 'props.data.site.siteMetadata')
-    const projects = get(this, 'props.data.allContentfulProject.edges')
+    let projects = get(this, 'props.data.allContentfulProject.edges')
+    projects = projects.filter(
+      (thing, index, self) =>
+        index === self.findIndex(t => t.node.slug === thing.node.slug)
+    )
     const homepage = get(this, 'props.data.allContentfulHomePage.edges')[0].node
     const { selectedProjectSlug, selectedProjectTitle } = this.state
 
@@ -86,11 +97,6 @@ class RootIndex extends React.Component {
               <source src={homepage.heroVideo.file.url} type="video/webm" />
             </video>
           </div>
-          {console.log(
-            homepage.hero.childMarkdownRemark.html
-              .replace(/(<p[^>]+?>|<p>|<\/p>)/gim, '')
-              .split('\n')
-          )}
           <div className="hero-body">
             <Fade right cascade>
               <div className="container is-fluid">
@@ -100,7 +106,10 @@ class RootIndex extends React.Component {
                   .map((el, index) => {
                     return (
                       <h2
-                        className="title is-1 has-text-weight-bold has-text-white"
+                        key={index}
+                        className={`${
+                          indexStyles.mobileTitle
+                        } title is-1 has-text-weight-bold has-text-white`}
                         style={{
                           fontSize: '4.5rem',
                           lineHeight: 1.45,
@@ -123,7 +132,9 @@ class RootIndex extends React.Component {
                 <div className="column is-two-thirds">
                   <Fade>
                     <h1
-                      className="title is-1 has-text-weight-bold has-text-gradient"
+                      className={`${
+                        indexStyles.mobileTitle
+                      } title is-1 has-text-weight-bold has-text-gradient`}
                       dangerouslySetInnerHTML={{
                         __html: homepage.slogan.childMarkdownRemark.html,
                       }}
@@ -136,7 +147,7 @@ class RootIndex extends React.Component {
         </section>
 
         <section
-          className="hero has-background-black"
+          className={`${indexStyles.mobileHero} hero has-background-black`}
           style={{
             marginLeft: '4rem',
             marginRight: '4rem',
@@ -189,7 +200,7 @@ class RootIndex extends React.Component {
                   </Slider>
                 </div>
               </div>
-              <div className="level">
+              <div className={`${indexStyles.levelBlock} level`}>
                 <div className="level-left has-text-white">
                   <span>01</span>
                   <span>{projects.length.toString().padStart(2, 0)}</span>
@@ -221,12 +232,15 @@ class RootIndex extends React.Component {
 
         <section className="hero has-background-white is-medium">
           <div className="hero-body">
-            <div className="container">
+            <div className="container" style={{ overflow: 'hidden' }}>
               <Slide bottom cascade>
                 <div className="columns is-variable is-8 is-multiline">
                   {homepage.services.map((node, index) => {
                     return (
-                      <div key={index} className="column is-one-third">
+                      <div
+                        key={index}
+                        className="column is-12-mobile is-one-third"
+                      >
                         <h1 className="title has-text-black is-4 has-text-weight-bold">
                           {node.title}
                         </h1>
@@ -247,7 +261,7 @@ class RootIndex extends React.Component {
         </section>
 
         <section
-          className="hero is-medium gradient"
+          className={`${indexStyles.mobileHero} hero is-medium gradient`}
           style={{
             marginBottom: '4rem',
             marginLeft: '4rem',
@@ -267,12 +281,16 @@ class RootIndex extends React.Component {
               <div className="container">
                 <div className="columns" style={{ marginBottom: '4rem' }}>
                   <div className="column is-two-thirds">
-                    <h2 className="title has-text-white is-1 has-text-weight-bold">
+                    <h2
+                      className={`${
+                        indexStyles.mobileTitle
+                      } title has-text-white is-1 has-text-weight-bold`}
+                    >
                       {homepage.promo.title}
                     </h2>
                   </div>
                 </div>
-                <div className="level">
+                <div className={`${indexStyles.levelBlock} level`}>
                   <div className="level-left">
                     <h3
                       className="title has-text-black is-4 has-text-weight-bold"
@@ -352,7 +370,6 @@ export const pageQuery = graphql`
           title
           slug
           publishDate(formatString: "MMMM Do, YYYY")
-          tags
           heroImage {
             fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
               ...GatsbyContentfulFluid_withWebp
