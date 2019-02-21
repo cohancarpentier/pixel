@@ -8,13 +8,15 @@ import squares from './../images/squares.svg'
 import projectStyles from './project.module.scss'
 import Fade from 'react-reveal/Slide'
 
+const windowGlobal = typeof window !== 'undefined' && window
+
 class ProjectTemplate extends React.Component {
   state = {
     descriptionOpened: false,
     currentProjectIndex: 0,
   }
 
-  componentWillMount() {
+  componentDidMount() {
     let projects = get(this, 'props.data.allContentfulProject.edges')
     projects = projects.filter(
       (thing, index, self) =>
@@ -22,9 +24,13 @@ class ProjectTemplate extends React.Component {
     )
     let currentProjectIndex = []
 
-    const projectSlug = window.location.href.substr(
-      window.location.href.lastIndexOf('/') + 1
-    )
+    let projectSlug
+
+    if (windowGlobal.location) {
+      windowGlobal.location.href.substr(
+        windowGlobal.location.href.lastIndexOf('/') + 1
+      )
+    }
 
     projects.filter((project, index) => {
       if (project.node.slug === projectSlug) {

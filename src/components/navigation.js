@@ -7,6 +7,8 @@ import logoWhite from './../images/logo.svg'
 import logoBlack from './../images/logo-black.svg'
 import Slide from 'react-reveal/Slide'
 
+const windowGlobal = typeof window !== 'undefined' && window
+
 export class Navigation extends Component {
   state = {
     showMenu: false,
@@ -26,7 +28,7 @@ export class Navigation extends Component {
   }
 
   componentDidMount = () => {
-    window.addEventListener('scroll', event => {
+    windowGlobal.addEventListener('scroll', () => {
       this.handleScroll()
     })
   }
