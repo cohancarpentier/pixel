@@ -10,13 +10,40 @@ import indexStyles from './index.module.scss'
 import Img from 'gatsby-image'
 
 class RootIndex extends React.Component {
+  state = {
+    selectedProjectSlug: '',
+    projects: null,
+  }
+
+  componentDidMount() {
+    const projects = get(this, 'props.data.allContentfulProject.edges')
+    this.setState({
+      selectedProjectSlug: projects[0].node.slug,
+    })
+  }
+
+  handleSlideChange = (oldIndex, newIndex) => {
+    //console.log(oldIndex, newIndex)
+    const projects = get(this, 'props.data.allContentfulProject.edges')
+    console.log(projects)
+    this.setState(
+      {
+        selectedProjectSlug: projects[newIndex].node.slug,
+      },
+      () => console.log(this.state)
+    )
+  }
+
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const siteMetadata = get(this, 'props.data.site.siteMetadata')
     const projects = get(this, 'props.data.allContentfulProject.edges')
     const homepage = get(this, 'props.data.allContentfulHomePage.edges')[0].node
+    const { selectedProjectSlug } = this.state
 
-    console.log(projects)
+    //console.log(this.state)
+
+    //console.log(projects)
 
     const carouselSettings = {
       dots: true,
@@ -24,6 +51,7 @@ class RootIndex extends React.Component {
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
+      beforeChange: this.handleSlideChange,
     }
     console.log(homepage)
 
@@ -36,12 +64,12 @@ class RootIndex extends React.Component {
             style={{
               height: '100%',
               width: '100%',
-              background: 'url(../img/index-image.jpg) no-repeat center center',
+              //background: 'url(../img/index-image.jpg) no-repeat center center',
               backgroundSize: 'cover',
             }}
           >
             <video
-              poster="img/bgimg.jpg"
+              //poster="img/bgimg.jpg"
               playsInline
               autoPlay
               muted
@@ -53,8 +81,8 @@ class RootIndex extends React.Component {
                 zIndex: '-100',
                 right: 0,
                 bottom: 0,
-                background:
-                  'url(../img/index-image.jpg) no-repeat center center',
+                /*background:
+                  'url(../img/index-image.jpg) no-repeat center center',*/
                 backgroundSize: 'cover',
                 overflow: 'hidden',
               }}
@@ -66,7 +94,11 @@ class RootIndex extends React.Component {
             <div className="container is-fluid">
               <h1
                 className="title is-1 has-text-weight-bold has-text-white"
-                style={{ whiteSpace: 'pre' }}
+                style={{
+                  whiteSpace: 'pre',
+                  fontSize: '4.5rem',
+                  lineHeight: 1.45,
+                }}
                 dangerouslySetInnerHTML={{
                   __html: homepage.hero.childMarkdownRemark.html,
                 }}
@@ -110,7 +142,7 @@ class RootIndex extends React.Component {
                     fondation alain choquette
                   </h2>
                   <Link
-                    to={'/projects'}
+                    to={`/projects/${selectedProjectSlug}`}
                     style={{ marginRight: '0.5rem' }}
                     className={indexStyles.gradientButton}
                   >
@@ -149,7 +181,7 @@ class RootIndex extends React.Component {
               <div className="level">
                 <div className="level-left has-text-white">
                   <span>01</span>
-                  <span>05</span>
+                  <span>{projects.length.toString().padStart(2, 0)}</span>
                 </div>
                 <div className="level-right">
                   <Link
@@ -238,8 +270,8 @@ class RootIndex extends React.Component {
                     />
                   </div>
                   <div className="level-right">
-                    <Link to={`/`}>
-                      <span>Mandatez-nous</span>
+                    <Link to={`/`} className={indexStyles.button}>
+                      <span className="has-text-black">Mandatez-nous</span>
                     </Link>
                   </div>
                 </div>
