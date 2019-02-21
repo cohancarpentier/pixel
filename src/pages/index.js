@@ -152,8 +152,8 @@ class RootIndex extends React.Component {
         <section
           className={`${indexStyles.mobileHero} hero has-background-black`}
           style={{
-            marginLeft: '4rem',
-            marginRight: '4rem',
+            marginLeft: '5.5rem',
+            marginRight: '5.5rem',
           }}
         >
           <div className="hero-body">
@@ -266,9 +266,9 @@ class RootIndex extends React.Component {
         <section
           className={`${indexStyles.mobileHero} hero is-medium gradient`}
           style={{
-            marginBottom: '4rem',
-            marginLeft: '4rem',
-            marginRight: '4rem',
+            marginBottom: '5.5rem',
+            marginLeft: '5.5rem',
+            marginRight: '5.5rem',
           }}
         >
           <div
