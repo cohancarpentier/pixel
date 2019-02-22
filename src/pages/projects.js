@@ -76,13 +76,16 @@ class ProjectsIndex extends React.Component {
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={siteTitle} />
         <div className="has-background-black" style={{ paddingTop: '8rem' }}>
-          <div className="container is-fluid">
+          <div
+            className="container is-fluid"
+            style={{ marginLeft: '5.5rem', marginRight: '5.5rem' }}
+          >
             <hr
               style={{ backgroundColor: 'rgba(255,255,255,0.2', margin: 0 }}
             />
             <div
               className="level has-text-white has-text-weight-semibold"
-              style={{ paddingTop: '2rem', marginBottom: '2rem' }}
+              style={{ height: '100px', margin: 0 }}
             >
               <div className="level-left">
                 <h1 className="has-text-weight-semibold">Portfolio</h1>

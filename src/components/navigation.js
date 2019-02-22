@@ -69,6 +69,9 @@ export class Navigation extends Component {
                     })
                   }
                   className={`${showMenu ? 'open' : null} menuToggle`}
+                  style={{
+                    marginRight: '-1.5rem',
+                  }}
                 >
                   <div className="hamburger">
                     <span className="menuLine" />

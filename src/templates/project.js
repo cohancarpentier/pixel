@@ -61,7 +61,10 @@ class ProjectTemplate extends React.Component {
           className="has-background-black"
           style={{ paddingTop: '8rem', position: 'relative', zIndex: 2 }}
         >
-          <div className="container is-fluid">
+          <div
+            className="container is-fluid"
+            style={{ marginLeft: '5.5rem', marginRight: '5.5rem' }}
+          >
             <hr
               style={{ backgroundColor: 'rgba(255,255,255,0.2', margin: 0 }}
             />
@@ -96,7 +99,10 @@ class ProjectTemplate extends React.Component {
         </div>
         <Fade top collapse when={descriptionOpened} style={{ zIndex: 1 }}>
           <div className="has-background-black">
-            <div className="container is-fluid">
+            <div
+              className="container is-fluid"
+              style={{ marginLeft: '5.5rem', marginRight: '5.5rem' }}
+            >
               <hr
                 style={{ backgroundColor: 'rgba(255,255,255,0.2', margin: 0 }}
               />
@@ -154,6 +160,8 @@ class ProjectTemplate extends React.Component {
             style={{
               marginTop: '4rem',
               marginBottom: '4rem',
+              marginLeft: '5.5rem',
+              marginRight: '5.5rem',
             }}
           >
             <Img alt={project.title} fluid={project.heroImage.fluid} />
