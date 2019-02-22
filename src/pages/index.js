@@ -216,20 +216,10 @@ class RootIndex extends React.Component {
                   </h2>
                   <Link
                     to={`/projects/${selectedProjectSlug}`}
-                    className={indexStyles.gradientButton}
+                    className="btn-gradient"
                     style={{ width: '100%' }}
                   >
-                    <span
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        padding: '0.55rem 3rem',
-                      }}
-                      className="has-background-black has-text-white"
-                    >
-                      Découvrir le projet
-                    </span>
+                    <span>Découvrir le projet</span>
                   </Link>
                 </div>
                 <div className="column is-8" style={{ marginBottom: '-7rem' }}>

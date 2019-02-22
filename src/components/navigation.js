@@ -57,19 +57,9 @@ export class Navigation extends Component {
                 <Link
                   to={'/mandate-us'}
                   style={{ marginRight: '0.5rem' }}
-                  className={navStyles.gradientButton}
+                  className="btn-gradient"
                 >
-                  <span
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      padding: '0.55rem 3rem',
-                    }}
-                    className="has-background-black has-text-white"
-                  >
-                    Mandatez-nous
-                  </span>
+                  <span>Mandatez-nous</span>
                 </Link>
 
                 <div
