@@ -71,7 +71,26 @@ export class Navigation extends Component {
                     Mandatez-nous
                   </span>
                 </Link>
-                <a>
+
+                <div
+                  onClick={() =>
+                    this.setState({
+                      showMenu: !showMenu,
+                    })
+                  }
+                  className={`${showMenu ? 'open' : null} menuToggle`}
+                >
+                  <div className="hamburger">
+                    <span className="menuLine" />
+                    <span className="menuLine" />
+                    <span className="menuLine" />
+                  </div>
+                  <div className="cross">
+                    <span className="menuLine" />
+                    <span className="menuLine" />
+                  </div>
+                </div>
+                {/*<a>
                   <img
                     onClick={() =>
                       this.setState({
@@ -84,7 +103,7 @@ export class Navigation extends Component {
                     height={32}
                     style={{ marginLeft: '3rem' }}
                   />
-                </a>
+                  </a>*/}
               </div>
             </div>
           </div>
@@ -93,11 +112,11 @@ export class Navigation extends Component {
           <div
             className={`${navStyles.menu} has-background-white`}
             style={{
-              zIndex: 99999999,
+              zIndex: 999999,
               pointerEvents: showMenu ? 'all' : 'none',
             }}
           >
-            <nav role="navigation" className={navStyles.navigation}>
+            {/*<nav role="navigation" className={navStyles.navigation}>
               <div className="container is-fluid">
                 <div className="level">
                   <div className="level-left">
@@ -123,7 +142,7 @@ export class Navigation extends Component {
                   </div>
                 </div>
               </div>
-            </nav>
+                      </nav>*/}
             <div className="container">
               <div className="columns">
                 <div className="column is-half">

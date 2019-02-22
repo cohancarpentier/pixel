@@ -142,7 +142,7 @@ class RootIndex extends React.Component {
                           indexStyles.mobileTitle
                         } title is-1 has-text-weight-bold has-text-white`}
                         style={{
-                          fontSize: '4.5rem',
+                          fontSize: '4rem',
                           lineHeight: 1.45,
                         }}
                         dangerouslySetInnerHTML={{
