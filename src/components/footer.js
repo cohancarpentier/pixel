@@ -43,7 +43,7 @@ export class Footer extends Component {
               </a>
             </div>
           </div>
-          <hr style={{ margin: 0, backgroundColor: 'rgba(255,255,255,0.1' }} />
+          <hr style={{ margin: 0, backgroundColor: 'rgba(255,255,255,0.2' }} />
           <div className={`${footerStyles.levelBlock} level`}>
             <div className="level-left">
               <Link to={`/studio-rental`}>

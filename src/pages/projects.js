@@ -78,7 +78,7 @@ class ProjectsIndex extends React.Component {
         <div className="has-background-black" style={{ paddingTop: '8rem' }}>
           <div className="container is-fluid">
             <hr
-              style={{ backgroundColor: 'rgba(255,255,255,0.1', margin: 0 }}
+              style={{ backgroundColor: 'rgba(255,255,255,0.2', margin: 0 }}
             />
             <div
               className="level has-text-white has-text-weight-semibold"

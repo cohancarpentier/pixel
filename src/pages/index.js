@@ -16,6 +16,8 @@ class RootIndex extends React.Component {
     selectedProjectSlug: '',
     selectedProjectTitle: '',
     projects: null,
+    loaded: false,
+    progress: 0,
   }
 
   componentDidMount() {
@@ -27,10 +29,25 @@ class RootIndex extends React.Component {
     this.setState({
       selectedProjectSlug: projects[0].node.slug,
       selectedProjectTitle: projects[0].node.title,
+      loaded: true,
     })
   }
 
-  handleSlideChange = (oldIndex, newIndex) => {
+  handleProgressChange = newIndex => {
+    let projects = get(this, 'props.data.allContentfulProject.edges')
+    projects = projects.filter(
+      (thing, index, self) =>
+        index === self.findIndex(t => t.node.slug === thing.node.slug)
+    )
+    this.setState(
+      {
+        progress: (newIndex * 100) / (projects.length - 1),
+      },
+      () => console.log(this.state)
+    )
+  }
+
+  handleSlideChange = newIndex => {
     let projects = get(this, 'props.data.allContentfulProject.edges')
     projects = projects.filter(
       (thing, index, self) =>
@@ -42,6 +59,12 @@ class RootIndex extends React.Component {
     })
   }
 
+  handleChange = (oldIndex, newIndex) => {
+    console.log('hey hey')
+    this.handleSlideChange(newIndex)
+    this.handleProgressChange(newIndex)
+  }
+
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const siteMetadata = get(this, 'props.data.site.siteMetadata')
@@ -51,7 +74,12 @@ class RootIndex extends React.Component {
         index === self.findIndex(t => t.node.slug === thing.node.slug)
     )
     const homepage = get(this, 'props.data.allContentfulHomePage.edges')[0].node
-    const { selectedProjectSlug, selectedProjectTitle } = this.state
+    const {
+      selectedProjectSlug,
+      selectedProjectTitle,
+      loaded,
+      progress,
+    } = this.state
 
     const carouselSettings = {
       dots: false,
@@ -59,7 +87,7 @@ class RootIndex extends React.Component {
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      beforeChange: this.handleSlideChange,
+      beforeChange: this.handleChange,
     }
 
     return (
@@ -101,7 +129,7 @@ class RootIndex extends React.Component {
             className="hero-body"
             style={{ backgroundColor: 'rgba(0,0,0,0.75)' }}
           >
-            <Fade right cascade>
+            <Fade right cascade when={loaded}>
               <div className="container is-fluid">
                 {homepage.hero.childMarkdownRemark.html
                   .replace(/(<p[^>]+?>|<p>|<\/p>)/gim, '')
@@ -158,18 +186,38 @@ class RootIndex extends React.Component {
         >
           <div className="hero-body">
             <div className="container">
-              <div className="columns" style={{ marginBottom: '4rem' }}>
-                <div className="column is-two-fifths">
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <h2
+                  className="has-text-white is-italic"
+                  style={{ whiteSpace: 'nowrap' }}
+                >
+                  Nos derniers projets
+                </h2>
+                <span
+                  style={{
+                    display: 'block',
+                    backgroundColor: 'rgba(255,255,255,0.2)',
+                    marginLeft: '1rem',
+                    width: '100%',
+                    height: '1px',
+                  }}
+                />
+              </div>
+              <div
+                className="columns is-variable is-8"
+                style={{ marginBottom: '4rem' }}
+              >
+                <div className="column is-4">
                   <h2
                     className="title has-text-white is-3 has-text-weight-bold"
-                    style={{ marginBottom: '5rem' }}
+                    style={{ marginBottom: '5rem', marginTop: '2rem' }}
                   >
                     {selectedProjectTitle}
                   </h2>
                   <Link
                     to={`/projects/${selectedProjectSlug}`}
-                    style={{ marginRight: '0.5rem' }}
                     className={indexStyles.gradientButton}
+                    style={{ width: '100%' }}
                   >
                     <span
                       style={{
@@ -184,10 +232,7 @@ class RootIndex extends React.Component {
                     </span>
                   </Link>
                 </div>
-                <div
-                  className="column is-three-fifths"
-                  style={{ marginBottom: '-5rem' }}
-                >
+                <div className="column is-8" style={{ marginBottom: '-7rem' }}>
                   <Slider {...carouselSettings} style={{ height: '600px' }}>
                     {projects.map(project => {
                       if (project.node.heroImage.fluid.aspectRatio) {
@@ -203,12 +248,49 @@ class RootIndex extends React.Component {
                   </Slider>
                 </div>
               </div>
-              <div className={`${indexStyles.levelBlock} level`}>
-                <div className="level-left has-text-white">
-                  <span>01</span>
-                  <span>{projects.length.toString().padStart(2, 0)}</span>
+              <div className="columns is-variable is-8">
+                <div className="column is-4 has-text-white">
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <span>01</span>
+                    <div
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        height: '6px',
+                        backgroundColor: 'white',
+                        borderRadius: '6px',
+                        marginRight: '1rem',
+                        marginLeft: '1rem',
+                        position: 'relative',
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: 'block',
+                          width: `${progress}%`,
+                          transition: 'width 0.2s ease-in-out',
+                          height: '6px',
+                          background:
+                            'linear-gradient(to left, #d1bbfd, #51c9f6)',
+                          borderRadius: '6px',
+                          position: 'absolute',
+                          left: 0,
+                        }}
+                      />
+                    </div>
+                    <span>{projects.length.toString().padStart(2, 0)}</span>
+                  </div>
                 </div>
-                <div className="level-right">
+                <div
+                  className="column is-8"
+                  style={{ display: 'flex', justifyContent: 'flex-end' }}
+                >
                   <Link
                     to={'/projects'}
                     style={{
@@ -249,7 +331,10 @@ class RootIndex extends React.Component {
                         </h1>
                         <hr />
                         <div
-                          style={{ whiteSpace: 'pre', marginBottom: '4rem' }}
+                          style={{
+                            whiteSpace: 'pre',
+                            marginBottom: index <= 2 ? '4rem' : 0,
+                          }}
                           dangerouslySetInnerHTML={{
                             __html: node.description.childMarkdownRemark.html,
                           }}
@@ -374,7 +459,7 @@ export const pageQuery = graphql`
           slug
           publishDate(formatString: "MMMM Do, YYYY")
           heroImage {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
+            fluid(maxHeight: 460) {
               ...GatsbyContentfulFluid_withWebp
             }
           }

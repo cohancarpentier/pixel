@@ -63,7 +63,7 @@ class ProjectTemplate extends React.Component {
         >
           <div className="container is-fluid">
             <hr
-              style={{ backgroundColor: 'rgba(255,255,255,0.1', margin: 0 }}
+              style={{ backgroundColor: 'rgba(255,255,255,0.2', margin: 0 }}
             />
             <div
               className="level has-text-white has-text-weight-semibold"
@@ -98,7 +98,7 @@ class ProjectTemplate extends React.Component {
           <div className="has-background-black">
             <div className="container is-fluid">
               <hr
-                style={{ backgroundColor: 'rgba(255,255,255,0.1', margin: 0 }}
+                style={{ backgroundColor: 'rgba(255,255,255,0.2', margin: 0 }}
               />
               <div
                 className="columns has-text-white has-text-weight-semibold"
@@ -120,7 +120,7 @@ class ProjectTemplate extends React.Component {
                       <h2 className="has-text-weight-bold">Client</h2>
                       <p>{project.client}</p>
                       <hr
-                        style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
+                        style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}
                       />
                     </>
                   ) : null}
@@ -130,7 +130,7 @@ class ProjectTemplate extends React.Component {
                       <h2 className="has-text-weight-bold">Services</h2>
                       <p>{project.services}</p>
                       <hr
-                        style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
+                        style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}
                       />
                     </>
                   ) : null}
