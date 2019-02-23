@@ -15,8 +15,6 @@ class JobsIndex extends React.Component {
       (thing, index, self) =>
         index === self.findIndex(t => t.node.slug === thing.node.slug)
     )
-
-    console.log(jobs)
     const jobsPage = get(this, 'props.data.allContentfulJobsPage.edges')[0].node
 
     return (
@@ -116,9 +114,10 @@ class JobsIndex extends React.Component {
               className="columns is-multiline"
               style={{ marginTop: '2.5rem', marginBottom: '6rem' }}
             >
-              {jobs.map(job => {
+              {jobs.map((job, index) => {
                 return (
                   <div
+                    key={index}
                     className={`column is-11`}
                     style={{ marginBottom: '6rem' }}
                   >

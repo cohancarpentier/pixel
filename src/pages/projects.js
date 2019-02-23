@@ -20,7 +20,6 @@ class ProjectsIndex extends React.Component {
       ) {
         if (node.heroImage.fluid.aspectRatio) {
           const classes = []
-          console.log(i / 2 + 1)
           if ((i / 2 + 1) % 6 === 0) {
             classes.push(projectsStyles.spanCol2)
           } else if ((i / 2 + 1) % 5 === 0) {

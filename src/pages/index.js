@@ -39,12 +39,9 @@ class RootIndex extends React.Component {
       (thing, index, self) =>
         index === self.findIndex(t => t.node.slug === thing.node.slug)
     )
-    this.setState(
-      {
-        progress: (newIndex * 100) / (projects.length - 1),
-      },
-      () => console.log(this.state)
-    )
+    this.setState({
+      progress: (newIndex * 100) / (projects.length - 1),
+    })
   }
 
   handleSlideChange = newIndex => {
