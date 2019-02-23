@@ -174,7 +174,7 @@ export class Navigation extends Component {
                       </Link>
                     </li>
                     <li style={{ paddingBottom: '5rem' }}>
-                      <Link to={`/`}>
+                      <Link to={`/jobs`}>
                         <span
                           className={`${
                             navStyles.menuItem

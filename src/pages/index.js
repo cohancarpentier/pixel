@@ -60,7 +60,6 @@ class RootIndex extends React.Component {
   }
 
   handleChange = (oldIndex, newIndex) => {
-    console.log('hey hey')
     this.handleSlideChange(newIndex)
     this.handleProgressChange(newIndex)
   }

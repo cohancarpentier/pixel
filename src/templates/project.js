@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { graphql, Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
@@ -10,7 +10,7 @@ import Fade from 'react-reveal/Slide'
 
 const windowGlobal = typeof window !== 'undefined' && window
 
-class ProjectTemplate extends React.Component {
+class ProjectTemplate extends Component {
   state = {
     descriptionOpened: false,
     currentProjectIndex: 0,
