@@ -14,13 +14,6 @@
   border: 4px solid black;
 }
 
-.service {
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    opacity: 0.5;
-  }
-}
-
 @media screen and (max-width: 768px) {
   .mobileTitle {
     font-size: 1.75rem !important;
@@ -33,5 +26,26 @@
   .mobileHero {
     margin-left: 0 !important;
     margin-right: 0 !important;
+  }
+}
+
+.fakeJob {
+  position: relative;
+  background: $gradient;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.year {
+  &:before {
+    content: '';
+    display: block;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 1px;
+    width: 3rem;
+    position: absolute;
+    top: 3.65rem;
+    left: 0;
   }
 }

@@ -163,7 +163,7 @@ export class Navigation extends Component {
                       </Link>
                     </li>
                     <li>
-                      <Link to={`/`}>
+                      <Link to={`/services`}>
                         <span
                           className={`${
                             navStyles.menuItem

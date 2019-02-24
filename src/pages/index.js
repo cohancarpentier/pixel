@@ -69,6 +69,11 @@ class RootIndex extends React.Component {
       (thing, index, self) =>
         index === self.findIndex(t => t.node.slug === thing.node.slug)
     )
+    let services = get(this, 'props.data.allContentfulService.edges')
+    services = services.filter(
+      (thing, index, self) =>
+        index === self.findIndex(t => t.node.slug === thing.node.slug)
+    )
     const homepage = get(this, 'props.data.allContentfulHomePage.edges')[0].node
     const {
       selectedProjectSlug,
@@ -127,11 +132,16 @@ class RootIndex extends React.Component {
           >
             <Fade right cascade when={loaded}>
               <div className="container is-fluid">
-                {homepage.hero.childMarkdownRemark.html
-                  .replace(/(<p[^>]+?>|<p>|<\/p>)/gim, '')
-                  .split('\n')
-                  .map((el, index) => {
-                    return (
+                {services.map((el, index) => {
+                  return (
+                    <Link
+                      to={`/services/${el.node.slug}`}
+                      style={{
+                        display: 'block',
+                        paddingTop: '0.5rem',
+                        paddingBottom: '0.5rem',
+                      }}
+                    >
                       <h2
                         key={index}
                         className={`${
@@ -142,11 +152,12 @@ class RootIndex extends React.Component {
                           lineHeight: 1.45,
                         }}
                         dangerouslySetInnerHTML={{
-                          __html: el,
+                          __html: el.node.title,
                         }}
                       />
-                    )
-                  })}
+                    </Link>
+                  )
+                })}
               </div>
             </Fade>
           </div>
@@ -306,26 +317,30 @@ class RootIndex extends React.Component {
             <div className="container" style={{ overflow: 'hidden' }}>
               <Slide bottom cascade>
                 <div className="columns is-variable is-8 is-multiline">
-                  {homepage.services.map((node, index) => {
+                  {services.map((el, index) => {
                     return (
-                      <div
+                      <Link
+                        to={`/services/${el.node.slug}`}
                         key={index}
-                        className="column is-12-mobile is-one-third"
+                        className={`column is-12-mobile is-one-third has-text-black`}
                       >
-                        <h1 className="title has-text-black is-4 has-text-weight-bold">
-                          {node.title}
-                        </h1>
-                        <hr />
-                        <div
-                          style={{
-                            whiteSpace: 'pre',
-                            marginBottom: index <= 2 ? '4rem' : 0,
-                          }}
-                          dangerouslySetInnerHTML={{
-                            __html: node.description.childMarkdownRemark.html,
-                          }}
-                        />
-                      </div>
+                        <div className={indexStyles.service}>
+                          <h1 className="title has-text-black is-4 has-text-weight-bold">
+                            {el.node.title}
+                          </h1>
+                          <hr />
+                          <div
+                            style={{
+                              whiteSpace: 'pre',
+                              marginBottom: index <= 2 ? '4rem' : 0,
+                            }}
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                el.node.description.childMarkdownRemark.html,
+                            }}
+                          />
+                        </div>
+                      </Link>
                     )
                   })}
                 </div>
@@ -399,6 +414,19 @@ export const pageQuery = graphql`
         phoneNumber
         phoneNumberPretty
         address
+      }
+    }
+    allContentfulService {
+      edges {
+        node {
+          title
+          slug
+          description {
+            childMarkdownRemark {
+              html
+            }
+          }
+        }
       }
     }
     allContentfulHomePage {
