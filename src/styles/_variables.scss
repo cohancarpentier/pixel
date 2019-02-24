@@ -4,8 +4,8 @@ $family-sans-serif: 'Poppins', sans-serif;
 $blue: #51c9f6;
 $purple: #d1bbfd;
 $primary: $blue;
-$widescreen-enabled: false;
-$fullhd-enabled: false;
+$widescreen-enabled: true;
+$fullhd-enabled: true;
 
 $gradient: linear-gradient(to right, $purple, $blue);
 $gradientReverse: linear-gradient(to right, $blue, $purple);
