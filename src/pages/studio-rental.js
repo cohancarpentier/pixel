@@ -191,10 +191,7 @@ class StudioRentalIndex extends React.Component {
                     </h3>
                   </div>
                   <div className="level-right">
-                    <Link
-                      to={`/mandate-us`}
-                      className={studioRentalStyles.button}
-                    >
+                    <Link to={`/contact`} className={studioRentalStyles.button}>
                       <span className="has-text-black">Contactez-nous</span>
                     </Link>
                   </div>

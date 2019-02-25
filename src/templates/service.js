@@ -156,7 +156,7 @@ class ServiceTemplate extends Component {
                     </h3>
                   </div>
                   <div className="level-right">
-                    <Link to={`/mandate-us`} className={serviceStyles.button}>
+                    <Link to={`/contact`} className={serviceStyles.button}>
                       <span className="has-text-black">Contactez-nous</span>
                     </Link>
                   </div>

@@ -156,7 +156,7 @@ class JobTemplate extends Component {
                     </h3>
                   </div>
                   <div className="level-right">
-                    <Link to={`/mandate-us`} className={jobStyles.button}>
+                    <Link to={`/contact`} className={jobStyles.button}>
                       <span className="has-text-black">
                         Appliquer dès maintenant
                       </span>

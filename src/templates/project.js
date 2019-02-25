@@ -6,7 +6,7 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import squares from './../images/squares.svg'
 import projectStyles from './project.module.scss'
-import Fade from 'react-reveal/Slide'
+import Slide from 'react-reveal/Slide'
 
 const windowGlobal = typeof window !== 'undefined' && window
 
@@ -97,7 +97,7 @@ class ProjectTemplate extends Component {
             </div>
           </div>
         </div>
-        <Fade top collapse when={descriptionOpened} style={{ zIndex: 1 }}>
+        <Slide top collapse when={descriptionOpened} style={{ zIndex: 1 }}>
           <div className="has-background-black">
             <div
               className="container is-fluid"
@@ -153,7 +153,7 @@ class ProjectTemplate extends Component {
               </div>
             </div>
           </div>
-        </Fade>
+        </Slide>
         <div>
           <div
             className="container has-background-white is-fluid"

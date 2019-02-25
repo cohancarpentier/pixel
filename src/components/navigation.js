@@ -55,7 +55,7 @@ export class Navigation extends Component {
               </div>
               <div className="level-right">
                 <Link
-                  to={'/mandate-us'}
+                  to={'/contact'}
                   style={{ marginRight: '0.5rem' }}
                   className="btn-gradient"
                 >
