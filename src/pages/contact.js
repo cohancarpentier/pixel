@@ -5,6 +5,9 @@ import Helmet from 'react-helmet'
 import Layout from '../components/layout'
 import contactStyles from './contact.module.scss'
 import Slide from 'react-reveal/Slide'
+import instagram from './../images/instagram.svg'
+import facebook from './../images/facebook.svg'
+import linkedin from './../images/linkedin.svg'
 
 class ContactIndex extends React.Component {
   state = {
@@ -99,9 +102,53 @@ class ContactIndex extends React.Component {
               >
                 <div className="column is-7">dsfgsdfg</div>
                 <div className="column is-3 is-offset-2">
-                  <h2 className="has-text-weight-bold">Client</h2>
-                  <p>sdfgsdfg</p>
+                  <p
+                    dangerouslySetInnerHTML={{ __html: siteMetadata.address }}
+                  />
                   <hr style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
+                  <a
+                    className="has-text-white"
+                    href={`mailto:${siteMetadata.email}`}
+                    dangerouslySetInnerHTML={{ __html: siteMetadata.email }}
+                  />
+                  <hr style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
+                  <a
+                    href={`tel:${siteMetadata.phoneNumber}`}
+                    className={`${
+                      contactStyles.mobileTitle
+                    } title is-1 has-text-weight-bold has-text-white`}
+                  >
+                    {siteMetadata.phoneNumberPretty}
+                  </a>
+                  <hr style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
+                  <a
+                    href="https://www.facebook.com/pixelfirme/"
+                    target="_blank"
+                    rel="noopener"
+                    style={{ marginRight: '1.5rem' }}
+                  >
+                    <img width={32} height={32} src={facebook} alt="Facebook" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/pixel_firme_creative"
+                    target="_blank"
+                    rel="noopener"
+                    style={{ marginRight: '1.5rem' }}
+                  >
+                    <img
+                      width={32}
+                      height={32}
+                      src={instagram}
+                      alt="Instagram"
+                    />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/pixelfirmecreative"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <img width={32} height={32} src={linkedin} alt="LinkedIn" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -595,6 +642,7 @@ export const pageQuery = graphql`
         phoneNumber
         phoneNumberPretty
         address
+        email
       }
     }
     allContentfulContactPage {

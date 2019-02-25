@@ -25,6 +25,7 @@ module.exports = {
     title: 'Pixel',
     phoneNumber: '8195037956',
     phoneNumberPretty: '819 503-7956',
+    email: 'info@agencepixel.ca',
     address:
       '80, rue Adrien-Robert, studio B1<br/>Gatineau, Québec<br/>J8Y 3S2',
   },
