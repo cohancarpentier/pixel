@@ -214,7 +214,14 @@ class RootIndex extends React.Component {
                 className="columns is-variable is-8"
                 style={{ marginBottom: '4rem' }}
               >
-                <div className="column is-4">
+                <div
+                  className="column is-4"
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                  }}
+                >
                   <h2
                     className="title has-text-white is-3 has-text-weight-bold"
                     style={{ marginBottom: '5rem', marginTop: '2rem' }}

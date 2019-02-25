@@ -6,6 +6,7 @@ import Layout from '../components/layout'
 import teamStyles from './team.module.scss'
 import p from './../images/p-colored.svg'
 import Img from 'gatsby-image'
+import Fade from 'react-reveal/Fade'
 
 class TeamIndex extends React.Component {
   render() {
@@ -196,7 +197,9 @@ class TeamIndex extends React.Component {
                       className="column is-half"
                       style={{ marginBottom: '4rem' }}
                     >
-                      <Img alt="" fluid={employee.photo.fluid} />
+                      <Fade>
+                        <Img alt="" fluid={employee.photo.fluid} />
+                      </Fade>
                       <h2
                         className="has-text-gradient title is-5"
                         style={{
