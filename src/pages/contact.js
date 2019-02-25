@@ -8,6 +8,7 @@ import Slide from 'react-reveal/Slide'
 import instagram from './../images/instagram.svg'
 import facebook from './../images/facebook.svg'
 import linkedin from './../images/linkedin.svg'
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
 
 class ContactIndex extends React.Component {
   state = {
@@ -19,6 +20,7 @@ class ContactIndex extends React.Component {
     this.setState({
       currentStep: 0,
     })
+    document.body.style.backgroundColor = 'black'
   }
 
   handleProgressChange() {
@@ -73,9 +75,9 @@ class ContactIndex extends React.Component {
                     className="title is-3 has-text-white"
                     style={{ fontWeight: 100, marginRight: '1rem' }}
                   >
-                    +
+                    {moreInfoOpened ? '-' : '+'}
                   </span>
-                  Plus d'informations
+                  {moreInfoOpened ? 'Moins' : 'Plus'} d'informations
                 </a>
               </div>
             </div>
@@ -100,7 +102,17 @@ class ContactIndex extends React.Component {
                 className="columns has-text-white has-text-weight-semibold"
                 style={{ paddingTop: '4rem', paddingBottom: '6rem' }}
               >
-                <div className="column is-7">dsfgsdfg</div>
+                <div className="column is-7" style={{ position: 'relative' }}>
+                  <Map google={this.props.google} zoom={14}>
+                    <Marker name={'Current location'} />
+
+                    <InfoWindow>
+                      <div>
+                        <h1>aaaa</h1>
+                      </div>
+                    </InfoWindow>
+                  </Map>
+                </div>
                 <div className="column is-3 is-offset-2">
                   <p
                     dangerouslySetInnerHTML={{ __html: siteMetadata.address }}
@@ -174,7 +186,6 @@ class ContactIndex extends React.Component {
                 height: '100%',
                 width: '100%',
                 objectFit: 'cover',
-                zIndex: '-100',
                 right: 0,
                 bottom: 0,
                 /*background:
@@ -632,7 +643,9 @@ class ContactIndex extends React.Component {
   }
 }
 
-export default ContactIndex
+export default GoogleApiWrapper({
+  apiKey: 'bacon',
+})(ContactIndex)
 
 export const pageQuery = graphql`
   query ContactIndexQuery {

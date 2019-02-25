@@ -3,6 +3,14 @@
 @import '~bulma/bulma.sass';
 @import './buttons';
 
+html {
+  background-color: black;
+}
+
+body {
+  background-color: white;
+}
+
 .menuLine {
   display: block;
   background: white;

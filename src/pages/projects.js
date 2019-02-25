@@ -5,7 +5,7 @@ import Helmet from 'react-helmet'
 import Layout from '../components/layout'
 import ProjectPreview from '../components/project-preview'
 import projectsStyles from './projects.module.scss'
-import Zoom from 'react-reveal/Zoom'
+import Fade from 'react-reveal/Fade'
 
 class ProjectsIndex extends React.Component {
   state = {
@@ -106,11 +106,11 @@ class ProjectsIndex extends React.Component {
                 ))}
               </div>
             </div>
-            <Zoom cascade bottom where={tag}>
+            <Fade cascade bottom where={tag}>
               <div className={projectsStyles.grid}>
                 {this.renderProjects(projects)}
               </div>
-            </Zoom>
+            </Fade>
           </div>
         </div>
       </Layout>

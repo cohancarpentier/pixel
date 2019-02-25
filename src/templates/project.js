@@ -7,6 +7,7 @@ import Layout from '../components/layout'
 import squares from './../images/squares.svg'
 import projectStyles from './project.module.scss'
 import Slide from 'react-reveal/Slide'
+import Fade from 'react-reveal/Fade'
 
 const windowGlobal = typeof window !== 'undefined' && window
 
@@ -17,6 +18,10 @@ class ProjectTemplate extends Component {
   }
 
   componentDidMount() {
+    this.updateCurrentIndex()
+  }
+
+  updateCurrentIndex() {
     let projects = get(this, 'props.data.allContentfulProject.edges')
     projects = projects.filter(
       (thing, index, self) =>
@@ -27,9 +32,8 @@ class ProjectTemplate extends Component {
     let projectSlug
 
     if (windowGlobal.location) {
-      windowGlobal.location.href.substr(
-        windowGlobal.location.href.lastIndexOf('/') + 1
-      )
+      const url = windowGlobal.location.href
+      projectSlug = url.substr(url.lastIndexOf('/') + 1)
     }
 
     projects.filter((project, index) => {
@@ -89,7 +93,7 @@ class ProjectTemplate extends Component {
                     className="title is-3 has-text-white"
                     style={{ fontWeight: 100, marginRight: '1rem' }}
                   >
-                    +
+                    {descriptionOpened ? '-' : '+'}
                   </span>
                   Description du projet
                 </a>
@@ -164,14 +168,20 @@ class ProjectTemplate extends Component {
               marginRight: '5.5rem',
             }}
           >
-            <Img alt={project.title} fluid={project.heroImage.fluid} />
+            <Fade>
+              <Img alt={project.title} fluid={project.heroImage.fluid} />
+            </Fade>
 
             <div className="columns" style={{ marginTop: '1rem' }}>
               <div className="column is-half">
-                <Img alt={project.title} fluid={project.heroImage.fluid} />
+                <Fade>
+                  <Img alt={project.title} fluid={project.heroImage.fluid} />
+                </Fade>
               </div>
               <div className="column is-half">
-                <Img alt={project.title} fluid={project.heroImage.fluid} />
+                <Fade>
+                  <Img alt={project.title} fluid={project.heroImage.fluid} />
+                </Fade>
               </div>
             </div>
 
