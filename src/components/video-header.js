@@ -63,7 +63,7 @@ export class VideoHeader extends Component {
                 overflow: 'hidden',
               }}
             >
-              <source src={heroVideo} type="video/mp4" />
+              {heroVideo ? <source src={heroVideo} type="video/mp4" /> : null}
             </video>
           </div>
           <div

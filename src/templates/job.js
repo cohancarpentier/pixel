@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout'
-import Fade from 'react-reveal/Fade'
+import { VideoHeader } from '../components/video-header'
 import jobStyles from './job.module.scss'
 import p from './../images/p.svg'
 
@@ -16,92 +16,13 @@ class JobTemplate extends Component {
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={siteTitle} />
-        <div style={{ paddingTop: '8rem' }}>
-          <div
-            className="container is-fluid"
-            style={{ marginLeft: '5.5rem', marginRight: '5.5rem' }}
-          >
-            <hr
-              style={{ backgroundColor: 'rgba(255,255,255,0.2', margin: 0 }}
-            />
-            <div
-              className="level has-text-white has-text-weight-semibold"
-              style={{ height: '100px', margin: 0 }}
-            >
-              <div className="level-left">
-                <h1 className="has-text-weight-semibold">Jobs</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-        <section className="hero is-medium" style={{ marginTop: '-14.35rem' }}>
-          <div
-            className="hero-video"
-            style={{
-              height: '100%',
-              width: '100%',
-              //background: 'url(../img/index-image.jpg) no-repeat center center',
-              backgroundSize: 'cover',
-            }}
-          >
-            <video
-              //poster="img/bgimg.jpg"
-              playsInline
-              autoPlay
-              muted
-              loop
-              style={{
-                height: '100%',
-                width: '100%',
-                objectFit: 'cover',
-                zIndex: '-100',
-                right: 0,
-                bottom: 0,
-                /*background:
-                  'url(../img/index-image.jpg) no-repeat center center',*/
-                backgroundSize: 'cover',
-                overflow: 'hidden',
-              }}
-            >
-              <source src={''} type="video/webm" />
-            </video>
-          </div>
-          <div
-            className="hero-body"
-            style={{ backgroundColor: 'rgba(0,0,0,0.75)' }}
-          >
-            <Fade right cascade>
-              <div className="container">
-                <div
-                  style={{ marginTop: '6rem' }}
-                  className="columns is-multiline"
-                >
-                  <div className="column is-9">
-                    <h2
-                      className={`${
-                        jobStyles.mobileTitle
-                      } title is-2 has-text-weight-bold has-text-gradient`}
-                      style={{
-                        lineHeight: 1.25,
-                      }}
-                      dangerouslySetInnerHTML={{
-                        __html: job.title,
-                      }}
-                    />
-                  </div>
-                  <div className="column is-9">
-                    <p
-                      className={`has-text-white`}
-                      dangerouslySetInnerHTML={{
-                        __html: job.description.childMarkdownRemark.html,
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </Fade>
-          </div>
-        </section>
+        <VideoHeader
+          title={job.title}
+          heroImage={job.heroImage ? job.heroImage.fluid.src : null}
+          heroVideo={job.heroVideo ? job.heroVideo.file.url : null}
+          heroTitle={job.heroTitle}
+          heroDescription={job.heroDescription.childMarkdownRemark.html}
+        />
 
         <section>
           <div className="container">
@@ -193,6 +114,22 @@ export const pageQuery = graphql`
         }
       }
       content {
+        childMarkdownRemark {
+          html
+        }
+      }
+      heroTitle
+      heroVideo {
+        file {
+          url
+        }
+      }
+      heroImage {
+        fluid {
+          ...GatsbyContentfulFluid_withWebp
+        }
+      }
+      heroDescription {
         childMarkdownRemark {
           html
         }
