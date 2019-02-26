@@ -180,3 +180,168 @@ body {
     margin-top: unset;
   }
 }
+
+.to-reveal {
+  overflow: hidden;
+}
+.to-reveal:before,
+.to-reveal:after {
+  content: ' ';
+  display: table;
+}
+.to-reveal:not(.dont-show):after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -100%;
+  right: 100%;
+  transition: all 0.4s ease;
+  animation-name: revealBand;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+  background: $gradientReverse;
+  z-index: 5;
+}
+.to-reveal:not(.dont-show) > * {
+  animation-name: fadeIn;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+  animation-delay: 0.4s;
+}
+.to-reveal > * {
+  opacity: 0;
+}
+.to-reveal.dont-show:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -100%;
+  right: 100%;
+  transition: all 0.4s ease;
+}
+.to-reveal.main-color:after {
+  background: $blue;
+}
+.to-reveal.sec-color:after {
+  background: $purple;
+}
+.to-reveal.gradient-color:after {
+  background: $purple;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(90deg, $blue, $purple);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(90deg, $blue, $purple);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(90deg, $blue, $purple);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(90deg, $blue, $purple);
+  /* Standard syntax */
+}
+.to-reveal.delay-0-2:after {
+  animation-delay: 0.2s;
+}
+.to-reveal.delay-0-2 > * {
+  animation-delay: 0.6s;
+}
+.to-reveal.delay-0-4:after {
+  animation-delay: 0.4s;
+}
+.to-reveal.delay-0-4 > * {
+  animation-delay: 0.8s;
+}
+.to-reveal.delay-0-6:after {
+  animation-delay: 0.6s;
+}
+.to-reveal.delay-0-6 > * {
+  animation-delay: 1s;
+}
+.to-reveal.delay-0-8:after {
+  animation-delay: 0.8s;
+}
+.to-reveal.delay-0-8 > * {
+  animation-delay: 1.2s;
+}
+.to-reveal.delay-1-0:after {
+  animation-delay: 1s;
+}
+.to-reveal.delay-1-0 > * {
+  animation-delay: 1.4s;
+}
+.to-reveal.delay-1-2:after {
+  animation-delay: 1.2s;
+}
+.to-reveal.delay-1-2 > * {
+  animation-delay: 1.6s;
+}
+.to-reveal.delay-1-4:after {
+  animation-delay: 1.4s;
+}
+.to-reveal.delay-1-4 > * {
+  animation-delay: 1.8s;
+}
+.to-reveal.delay-1-6:after {
+  animation-delay: 1.6s;
+}
+.to-reveal.delay-1-6 > * {
+  animation-delay: 2s;
+}
+.to-reveal.delay-1-8:after {
+  animation-delay: 1.8s;
+}
+.to-reveal.delay-1-8 > * {
+  animation-delay: 2.2s;
+}
+.to-reveal.delay-2-0:after {
+  animation-delay: 2s;
+}
+.to-reveal.delay-2-0 > * {
+  animation-delay: 2.4s;
+}
+.to-reveal.delay-2-2:after {
+  animation-delay: 2.2s;
+}
+.to-reveal.delay-2-2 > * {
+  animation-delay: 2.6s;
+}
+.to-reveal.delay-2-4:after {
+  animation-delay: 2.4s;
+}
+.to-reveal.delay-2-4 > * {
+  animation-delay: 2.8s;
+}
+.to-reveal.delay-2-6:after {
+  animation-delay: 2.6s;
+}
+
+/* DEFINITION DES ANIMATIONS */
+@keyframes revealBand {
+  0% {
+    left: -100%;
+    right: 100%;
+  }
+  45% {
+    left: 0;
+    right: 0;
+  }
+  55% {
+    left: 0;
+    right: 0;
+  }
+  100% {
+    left: 100%;
+    right: -100%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

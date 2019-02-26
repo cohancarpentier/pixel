@@ -16,11 +16,12 @@ class JobsIndex extends React.Component {
         index === self.findIndex(t => t.node.slug === thing.node.slug)
     )
     const jobsPage = get(this, 'props.data.allContentfulJobsPage.edges')[0].node
+    console.log(jobsPage)
 
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={siteTitle} />
-        <div style={{ paddingTop: '8rem' }}>
+        <div style={{ paddingTop: '8rem', zIndex: 3, position: 'relative' }}>
           <div
             className="container is-fluid"
             style={{ marginLeft: '5.5rem', marginRight: '5.5rem' }}
@@ -38,7 +39,10 @@ class JobsIndex extends React.Component {
             </div>
           </div>
         </div>
-        <section className="hero is-medium" style={{ marginTop: '-14.35rem' }}>
+        <section
+          className="hero is-medium"
+          style={{ marginTop: '-14.35rem', position: 'relative' }}
+        >
           <div
             className="hero-video"
             style={{
@@ -58,7 +62,7 @@ class JobsIndex extends React.Component {
                 height: '100%',
                 width: '100%',
                 objectFit: 'cover',
-                zIndex: '-100',
+                zIndex: '1',
                 right: 0,
                 bottom: 0,
                 /*background:
@@ -67,12 +71,12 @@ class JobsIndex extends React.Component {
                 overflow: 'hidden',
               }}
             >
-              <source src={''} type="video/webm" />
+              <source src={jobsPage.heroVideo.file.url} type="video/mp4" />
             </video>
           </div>
           <div
             className="hero-body"
-            style={{ backgroundColor: 'rgba(0,0,0,0.75)' }}
+            style={{ backgroundColor: 'rgba(0,0,0,0.75)', zIndex: 2 }}
           >
             <Fade right cascade>
               <div className="container">
@@ -116,18 +120,69 @@ class JobsIndex extends React.Component {
             >
               {jobs.map((job, index) => {
                 return (
-                  <div
-                    key={index}
-                    className={`column is-11`}
-                    style={{ marginBottom: '6rem' }}
-                  >
-                    <div className={`${jobsStyles.fakeJob}`}>
+                  <Fade key={index} bottom>
+                    <div
+                      className={`column is-11`}
+                      style={{
+                        marginBottom: '6rem',
+                        position: 'relative',
+                      }}
+                    >
                       <div
-                        className="has-background-black"
+                        className="to-reveal delay-0-8"
+                        style={{ position: 'relative', zIndex: 1 }}
+                      >
+                        <div className={` ${jobsStyles.fakeJob}`}>
+                          <div
+                            style={{
+                              position: 'relative',
+                              visibility: 'hidden',
+                            }}
+                          >
+                            <div
+                              className="level"
+                              style={{ padding: '3rem 4rem' }}
+                            >
+                              <div
+                                className="level-left"
+                                style={{
+                                  flexDirection: 'column',
+                                  alignItems: 'flex-start',
+                                }}
+                              >
+                                <h2 className="title is-4 has-text-white has-text-weight-bold">
+                                  {job.node.title}
+                                </h2>
+                                <p className="has-text-white is-italic">
+                                  {job.node.time}
+                                </p>
+                                <p className="has-text-white is-italic">
+                                  Salaire: {job.node.salary}
+                                </p>
+                              </div>
+                              <div className="level-right">
+                                <Link
+                                  to={`/jobs/${job.node.slug}`}
+                                  className="btn-gradient"
+                                >
+                                  <span className="has-text-white">
+                                    En savoir plus
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
                         style={{
-                          position: 'relative',
-                          left: '4rem',
-                          top: '4rem',
+                          backgroundColor: '#222222',
+                          position: 'absolute',
+                          left: '3rem',
+                          top: '3rem',
+                          right: '-1.5rem',
+                          zIndex: 2,
                         }}
                       >
                         <div className="level" style={{ padding: '3rem 4rem' }}>
@@ -139,6 +194,17 @@ class JobsIndex extends React.Component {
                             }}
                           >
                             <h2 className="title is-4 has-text-white has-text-weight-bold">
+                              <span
+                                style={{
+                                  width: '3rem',
+                                  backgroundColor: 'rgba(255,255,255,0.2)',
+                                  height: '1px',
+                                  display: 'block',
+                                  position: 'relative',
+                                  left: '-4rem',
+                                  top: '0.775rem',
+                                }}
+                              />
                               {job.node.title}
                             </h2>
                             <p className="has-text-white is-italic">
@@ -161,7 +227,7 @@ class JobsIndex extends React.Component {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </Fade>
                 )
               })}
             </div>
@@ -189,6 +255,16 @@ export const pageQuery = graphql`
         node {
           title
           heroTitle
+          heroVideo {
+            file {
+              url
+            }
+          }
+          heroImage {
+            fluid {
+              ...GatsbyContentfulFluid_withWebp
+            }
+          }
           heroDescription {
             childMarkdownRemark {
               html
