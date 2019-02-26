@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout'
-import Fade from 'react-reveal/Fade'
+import { VideoHeader } from '../components/video-header'
 import p from './../images/p.svg'
 import serviceStyles from './service.module.scss'
 
@@ -15,98 +15,62 @@ class ServiceTemplate extends Component {
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={service.title} />
-        <div style={{ paddingTop: '8rem' }}>
+
+        <VideoHeader
+          title={service.title}
+          heroImage={service.heroImage ? service.heroImage.fluid.src : null}
+          heroVideo={service.heroVideo ? service.heroVideo.file.url : null}
+          heroTitle={service.heroTitle}
+          heroDescription={service.heroDescription.childMarkdownRemark.html}
+        />
+
+        <section className="has-background-white">
           <div
-            className="container is-fluid"
-            style={{ marginLeft: '5.5rem', marginRight: '5.5rem' }}
+            className="container"
+            style={{ marginTop: '4rem', marginBottom: '4rem' }}
           >
-            <hr
-              style={{ backgroundColor: 'rgba(255,255,255,0.2', margin: 0 }}
-            />
             <div
-              className="level has-text-white has-text-weight-semibold"
-              style={{ height: '100px', margin: 0 }}
-            >
-              <div className="level-left">
-                <Link to="/services">
-                  <h1 className="has-text-weight-semibold has-text-white">
-                    Services
-                  </h1>
-                </Link>
+              className="content"
+              dangerouslySetInnerHTML={{
+                __html: service.content.childMarkdownRemark.html,
+              }}
+            />
+          </div>
+        </section>
+
+        <section
+          className="has-background-black"
+          style={{ marginLeft: '5.5rem', marginRight: '5.5rem' }}
+        >
+          <div
+            className="container has-text-white"
+            style={{ marginTop: '2rem', marginBottom: '2rem' }}
+          >
+            <div className="columns">
+              <div className="column is-half">
+                <div
+                  className="content"
+                  dangerouslySetInnerHTML={{
+                    __html: service.content.childMarkdownRemark.html,
+                  }}
+                />
+              </div>
+              <div className="column is-half">
+                <div
+                  className="content"
+                  dangerouslySetInnerHTML={{
+                    __html: service.content.childMarkdownRemark.html,
+                  }}
+                />
               </div>
             </div>
-          </div>
-        </div>
-        <section className="hero is-medium" style={{ marginTop: '-14.35rem' }}>
-          <div
-            className="hero-video"
-            style={{
-              height: '100%',
-              width: '100%',
-              //background: 'url(../img/index-image.jpg) no-repeat center center',
-              backgroundSize: 'cover',
-            }}
-          >
-            <video
-              //poster="img/bgimg.jpg"
-              playsInline
-              autoPlay
-              muted
-              loop
-              style={{
-                height: '100%',
-                width: '100%',
-                objectFit: 'cover',
-                zIndex: '-100',
-                right: 0,
-                bottom: 0,
-                /*background:
-                  'url(../img/index-image.jpg) no-repeat center center',*/
-                backgroundSize: 'cover',
-                overflow: 'hidden',
-              }}
-            >
-              <source src={service.heroVideo.file.src} type="video/mp4" />
-            </video>
-          </div>
-          <div
-            className="hero-body"
-            style={{ backgroundColor: 'rgba(0,0,0,0.75)' }}
-          >
-            <Fade right cascade>
-              <div className="container">
-                <div
-                  style={{ marginTop: '6rem' }}
-                  className="columns is-multiline"
-                >
-                  <div className="column is-9">
-                    <h2
-                      className={`${
-                        serviceStyles.mobileTitle
-                      } title is-2 has-text-weight-bold has-text-gradient`}
-                      style={{
-                        lineHeight: 1.25,
-                      }}
-                      dangerouslySetInnerHTML={{
-                        __html: service.title,
-                      }}
-                    />
-                  </div>
-                  <div className="column is-9">
-                    <p className={`has-text-white`}>
-                      {service.heroDescription}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Fade>
           </div>
         </section>
 
         <section className="has-background-white">
           <div
             className="container"
-            style={{ marginTop: '2rem', marginBottom: '2rem' }}
+            style={{ marginTop: '4rem', marginBottom: '3rem' }}
           >
             <div
               className="content"
@@ -185,15 +149,30 @@ export const pageQuery = graphql`
     contentfulService(slug: { eq: $slug }) {
       title
       slug
-      heroDescription
+      description {
+        childMarkdownRemark {
+          html
+        }
+      }
       content {
         childMarkdownRemark {
           html
         }
       }
+      heroTitle
       heroVideo {
         file {
           url
+        }
+      }
+      heroImage {
+        fluid {
+          ...GatsbyContentfulFluid_withWebp
+        }
+      }
+      heroDescription {
+        childMarkdownRemark {
+          html
         }
       }
     }

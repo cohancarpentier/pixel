@@ -4,8 +4,19 @@ import Img from 'gatsby-image'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout'
+import Fade from 'react-reveal/Fade'
 
 class ServicesIndex extends Component {
+  state = {
+    loaded: false,
+  }
+
+  componentDidMount() {
+    this.setState({
+      loaded: true,
+    })
+  }
+
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     let services = get(this, 'props.data.allContentfulService.edges')
@@ -18,6 +29,7 @@ class ServicesIndex extends Component {
       this,
       'props.data.allContentfulServicesPage.edges'
     )[0].node
+    const { loaded } = this.state
 
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
@@ -77,25 +89,29 @@ class ServicesIndex extends Component {
               >
                 <div className="hero-body">
                   <div className="container">
-                    {services.map((service, index) => {
-                      return (
-                        <Link
-                          to={`/services/${service.node.slug}`}
-                          style={{
-                            paddingTop: '1rem',
-                            paddingBottom: '1rem',
-                            display: 'block',
-                          }}
-                        >
-                          <h2
-                            key={index}
-                            className="has-text-white title is-1 has-text-weight-bold"
-                          >
-                            {service.node.title}
-                          </h2>
-                        </Link>
-                      )
-                    })}
+                    <Fade right cascade when={loaded}>
+                      <div>
+                        {services.map((service, index) => {
+                          return (
+                            <Link
+                              to={`/services/${service.node.slug}`}
+                              style={{
+                                paddingTop: '1rem',
+                                paddingBottom: '1rem',
+                                display: 'block',
+                              }}
+                            >
+                              <h2
+                                key={index}
+                                className="has-text-white title is-1 has-text-weight-bold"
+                              >
+                                {service.node.title}
+                              </h2>
+                            </Link>
+                          )
+                        })}
+                      </div>
+                    </Fade>
                   </div>
                 </div>
               </div>

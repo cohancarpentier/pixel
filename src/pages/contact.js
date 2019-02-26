@@ -9,6 +9,8 @@ import instagram from './../images/instagram.svg'
 import facebook from './../images/facebook.svg'
 import linkedin from './../images/linkedin.svg'
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
+import arrow from './../images/arrow.svg'
+import arrowPrev from './../images/arrow-left.svg'
 
 class ContactIndex extends React.Component {
   state = {
@@ -27,10 +29,10 @@ class ContactIndex extends React.Component {
     document.body.style.backgroundColor = 'white'
   }
 
-  handleProgressChange() {
+  handleProgressChange(direction) {
     this.setState({
-      currentStep: this.state.currentStep + 1,
-      progress: ((this.state.currentStep + 1) * 100) / 5,
+      currentStep: this.state.currentStep + direction,
+      progress: ((this.state.currentStep + direction) * 100) / 5,
     })
   }
 
@@ -626,13 +628,83 @@ class ContactIndex extends React.Component {
                     </div>
 
                     <div className="level-right">
+                      {currentStep !== 0 ? (
+                        <a
+                          onClick={() => this.handleProgressChange(-1)}
+                          className={`${contactStyles.prevLink} has-text-white`}
+                          style={{
+                            position: 'relative',
+                            zIndex: 2,
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <div className={contactStyles.round}>
+                            <div className={contactStyles.cta}>
+                              <span
+                                className={[
+                                  contactStyles.arrow,
+                                  contactStyles.primera,
+                                  contactStyles.prev,
+                                ].join(' ')}
+                                style={{
+                                  backgroundImage: `url(${arrowPrev})`,
+                                }}
+                              />
+                              <span
+                                className={[
+                                  contactStyles.arrow,
+                                  contactStyles.segunda,
+                                  contactStyles.prev,
+                                ].join(' ')}
+                                style={{
+                                  backgroundImage: `url(${arrowPrev})`,
+                                }}
+                              />
+                            </div>
+                          </div>
+                          &nbsp;&nbsp;&nbsp;Précédent
+                        </a>
+                      ) : null}
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       {currentStep !== 5 ? (
                         <a
-                          onClick={() => this.handleProgressChange()}
-                          className="has-text-white"
-                          style={{ position: 'absolute', zIndex: 2 }}
+                          onClick={() => this.handleProgressChange(1)}
+                          className={`${contactStyles.nextLink} has-text-white`}
+                          style={{
+                            position: 'relative',
+                            zIndex: 2,
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                          }}
                         >
                           Suivant
+                          <div className={contactStyles.round}>
+                            <div className={contactStyles.cta}>
+                              <span
+                                className={[
+                                  contactStyles.arrow,
+                                  contactStyles.primera,
+                                  contactStyles.next,
+                                ].join(' ')}
+                                style={{
+                                  backgroundImage: `url(${arrow})`,
+                                }}
+                              />
+                              <span
+                                className={[
+                                  contactStyles.arrow,
+                                  contactStyles.segunda,
+                                  contactStyles.next,
+                                ].join(' ')}
+                                style={{
+                                  backgroundImage: `url(${arrow})`,
+                                }}
+                              />
+                            </div>
+                          </div>
                         </a>
                       ) : null}
                     </div>

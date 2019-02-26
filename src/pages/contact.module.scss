@@ -36,3 +36,139 @@
   width: 100%;
   height: 100%;
 }
+
+.round {
+  width: 24px;
+  height: 24px;
+  display: block;
+  position: relative;
+}
+
+.cta {
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+
+  .arrow {
+    left: 30%;
+  }
+}
+
+.arrow {
+  position: absolute;
+  margin-left: 0px;
+  width: 12px;
+  height: 12px;
+  background-size: contain;
+  top: 0.35rem;
+
+  &.segunda {
+    margin-left: 0.5rem;
+  }
+
+  &.primera {
+    &.bounceAlpha {
+      animation-name: bounceAlpha;
+      animation-duration: 1.4s;
+      animation-delay: 0.2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+
+    &.bounceAlphaReverse {
+      animation-name: bounceAlphaReverse;
+      animation-duration: 1.4s;
+      animation-delay: 0.2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+  }
+
+  .bounceAlpha {
+    animation-name: bounceAlpha;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  .bounceAlphaReverse {
+    animation-name: bounceAlphaReverse;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+}
+
+.prevLink {
+  &:hover {
+    .arrow {
+      animation-name: bounceAlphaReverse;
+      animation-duration: 1.4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      &.segunda {
+        animation-delay: 0.2s;
+        animation-name: bounceAlphaReverse;
+        animation-duration: 1.4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+    }
+  }
+}
+
+.nextLink {
+  &:hover {
+    .arrow {
+      animation-name: bounceAlpha;
+      animation-duration: 1.4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      &.primera {
+        animation-name: bounceAlpha;
+        animation-duration: 1.4s;
+        animation-delay: 0.2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+    }
+  }
+}
+
+@keyframes bounceAlpha {
+  0% {
+    opacity: 1;
+    transform: translateX(0px) scale(1);
+  }
+  25% {
+    opacity: 0;
+    transform: translateX(10px) scale(0.9);
+  }
+  26% {
+    opacity: 0;
+    transform: translateX(-10px) scale(0.9);
+  }
+  55% {
+    opacity: 1;
+    transform: translateX(0px) scale(1);
+  }
+}
+
+@keyframes bounceAlphaReverse {
+  0% {
+    opacity: 1;
+    transform: translateX(0px) scale(1);
+  }
+  25% {
+    opacity: 0;
+    transform: translateX(-10px) scale(0.9);
+  }
+  26% {
+    opacity: 0;
+    transform: translateX(10px) scale(0.9);
+  }
+  55% {
+    opacity: 1;
+    transform: translateX(0px) scale(1);
+  }
+}

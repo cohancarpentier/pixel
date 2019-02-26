@@ -75,6 +75,7 @@ class RootIndex extends React.Component {
         index === self.findIndex(t => t.node.slug === thing.node.slug)
     )
     const homepage = get(this, 'props.data.allContentfulHomePage.edges')[0].node
+    console.log(homepage)
     const {
       selectedProjectSlug,
       selectedProjectTitle,
@@ -114,7 +115,7 @@ class RootIndex extends React.Component {
                 height: '100%',
                 width: '100%',
                 objectFit: 'cover',
-                zIndex: '-100',
+                zIndex: '1',
                 right: 0,
                 bottom: 0,
                 /*background:
@@ -123,18 +124,19 @@ class RootIndex extends React.Component {
                 overflow: 'hidden',
               }}
             >
-              <source src={homepage.heroVideo.file.url} type="video/webm" />
+              <source src={homepage.heroVideo.file.url} type="video/mp4" />
             </video>
           </div>
           <div
             className="hero-body"
-            style={{ backgroundColor: 'rgba(0,0,0,0.75)' }}
+            style={{ backgroundColor: 'rgba(0,0,0,0.75)', zIndex: 2 }}
           >
             <Fade right cascade when={loaded}>
               <div className="container is-fluid">
                 {services.map((el, index) => {
                   return (
                     <Link
+                      key={index}
                       to={`/services/${el.node.slug}`}
                       style={{
                         display: 'block',
@@ -143,7 +145,6 @@ class RootIndex extends React.Component {
                       }}
                     >
                       <h2
-                        key={index}
                         className={`${
                           indexStyles.mobileTitle
                         } title is-1 has-text-weight-bold has-text-white`}
@@ -359,6 +360,7 @@ class RootIndex extends React.Component {
         <section
           className={`${indexStyles.mobileHero} hero is-medium gradient`}
           style={{
+            position: 'relative',
             marginBottom: '5.5rem',
             marginLeft: '5.5rem',
             marginRight: '5.5rem',
