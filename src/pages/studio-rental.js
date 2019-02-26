@@ -17,8 +17,6 @@ class StudioRentalIndex extends React.Component {
       'props.data.allContentfulStudioRentalPage.edges'
     )[0].node
 
-    console.log(studioRentalPage)
-
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={siteTitle} />

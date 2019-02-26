@@ -23,6 +23,10 @@ class ContactIndex extends React.Component {
     document.body.style.backgroundColor = 'black'
   }
 
+  componentWillUnmount() {
+    document.body.style.backgroundColor = 'white'
+  }
+
   handleProgressChange() {
     this.setState({
       currentStep: this.state.currentStep + 1,
