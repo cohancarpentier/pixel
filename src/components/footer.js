@@ -46,22 +46,31 @@ export class Footer extends Component {
           <hr style={{ margin: 0, backgroundColor: 'rgba(255,255,255,0.2' }} />
           <div className={`${footerStyles.levelBlock} level`}>
             <div className="level-left">
-              <Link to={`/studio-rental`}>
+              <Link to={`/team`}>
                 <span
                   className={`${
                     footerStyles.link
                   } has-text-white has-text-weight-semibold`}
                 >
-                  Location de studio
+                  L'agence
                 </span>
               </Link>
-              <Link to={`/prizes-and-mentions`}>
+              <Link to={`/projects`}>
                 <span
                   className={`${
                     footerStyles.link
                   } has-text-white has-text-weight-semibold`}
                 >
-                  Prix et mentions
+                  Projets
+                </span>
+              </Link>
+              <Link to={`/services`}>
+                <span
+                  className={`${
+                    footerStyles.link
+                  } has-text-white has-text-weight-semibold`}
+                >
+                  Services
                 </span>
               </Link>
               <Link to={`/jobs`}>
@@ -79,7 +88,7 @@ export class Footer extends Component {
                     footerStyles.link
                   } has-text-white has-text-weight-semibold`}
                 >
-                  Contact
+                  Nous joindre
                 </span>
               </Link>
             </div>
