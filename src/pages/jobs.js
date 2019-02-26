@@ -48,12 +48,14 @@ class JobsIndex extends React.Component {
             style={{
               height: '100%',
               width: '100%',
-              //background: 'url(../img/index-image.jpg) no-repeat center center',
+              background: `url(${
+                jobsPage.heroImage.fluid.src
+              }) no-repeat center center`,
               backgroundSize: 'cover',
             }}
           >
             <video
-              //poster="img/bgimg.jpg"
+              poster={jobsPage.heroImage.fluid.src}
               playsInline
               autoPlay
               muted
@@ -65,8 +67,9 @@ class JobsIndex extends React.Component {
                 zIndex: '1',
                 right: 0,
                 bottom: 0,
-                /*background:
-                  'url(../img/index-image.jpg) no-repeat center center',*/
+                background: `url(${
+                  jobsPage.heroImage.fluid.src
+                }) no-repeat center center`,
                 backgroundSize: 'cover',
                 overflow: 'hidden',
               }}
