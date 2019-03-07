@@ -720,7 +720,7 @@ class ContactIndex extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'bacon',
+  apiKey: 'AIzaSyCI3-iKhJWXm1cjskqmL_-QbTbsg9U37J4',
 })(ContactIndex)
 
 export const pageQuery = graphql`

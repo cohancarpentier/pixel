@@ -6,6 +6,44 @@
   background: $gradientReverse;
 }
 
+.glitchTitle {
+  font-size: 4rem;
+  line-height: 1.45;
+  font-weight: 700;
+  color: #fff;
+  position: relative;
+
+  &:before,
+  &:after {
+    display: block;
+    content: 'Photographie';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.8;
+  }
+  &:after {
+    color: $purple;
+    z-index: -2;
+  }
+  &:before {
+    color: $blue;
+    z-index: -1;
+  }
+  &:hover {
+    &:before {
+      animation: glitch-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
+        infinite;
+    }
+    &:after {
+      animation: glitch-left-2 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse
+        both infinite;
+    }
+  }
+}
+
 .button {
   display: flex;
   justify-content: center;
@@ -18,6 +56,35 @@
   transition: all 0.2s ease-in-out;
   &:hover {
     opacity: 0.5;
+  }
+}
+
+@keyframes glitch-left {
+  0% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(-5px, 3px);
+  }
+  66% {
+    transform: translate(5px, -3px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes glitch-left-2 {
+  0% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(-5px, -3px);
+  }
+  66% {
+    transform: translate(5px, 2px);
+  }
+  to {
+    transform: translate(0);
   }
 }
 

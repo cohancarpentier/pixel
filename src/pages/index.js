@@ -138,16 +138,22 @@ class RootIndex extends React.Component {
                     <Link
                       key={index}
                       to={`/services/${el.node.slug}`}
+                      className="glitchy"
                       style={{
-                        display: 'block',
+                        display: 'inline-block',
+                        float: 'left',
+                        clear: 'both',
                         paddingTop: '0.5rem',
                         paddingBottom: '0.5rem',
                       }}
                     >
                       <h2
-                        className={`${
-                          indexStyles.mobileTitle
-                        } title is-1 has-text-weight-bold has-text-white`}
+                        className={`${[
+                          indexStyles.mobileTitle,
+                          indexStyles.glitchTitle,
+                        ].join(
+                          ' '
+                        )} title is-1 has-text-weight-bold has-text-white`}
                         style={{
                           fontSize: '4rem',
                           lineHeight: 1.45,
