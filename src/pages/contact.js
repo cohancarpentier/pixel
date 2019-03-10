@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
@@ -12,7 +12,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
 import arrow from './../images/arrow.svg'
 import arrowPrev from './../images/arrow-left.svg'
 
-class ContactIndex extends React.Component {
+class ContactIndex extends Component {
   state = {
     moreInfoOpened: false,
     currentStep: null,

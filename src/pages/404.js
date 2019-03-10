@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout'
 
-class ErrorIndex extends React.Component {
+class ErrorIndex extends Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const siteMetadata = get(this, 'props.data.site.siteMetadata')

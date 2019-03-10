@@ -1,15 +1,12 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from 'gatsby'
 import './../styles/styles.scss'
 import { Navigation } from './navigation'
 import { Footer } from './footer'
 
-class Template extends Component {
+class Layout extends Component {
   render() {
-    const { location, children, siteMetadata } = this.props
-    let header
+    const { children, siteMetadata } = this.props
 
-    let rootPath = `/`
     if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
       rootPath = __PATH_PREFIX__ + `/`
     }
@@ -32,4 +29,4 @@ class Template extends Component {
   }
 }
 
-export default Template
+export default Layout

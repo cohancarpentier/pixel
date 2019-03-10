@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import get from 'lodash/get'
@@ -8,7 +8,7 @@ import Fade from 'react-reveal/Fade'
 import p from './../images/p.svg'
 import studioRentalStyles from './studio-rental.module.scss'
 
-class StudioRentalIndex extends React.Component {
+class StudioRentalIndex extends Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const siteMetadata = get(this, 'props.data.site.siteMetadata')

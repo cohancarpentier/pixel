@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
@@ -7,7 +7,7 @@ import ProjectPreview from '../components/project-preview'
 import projectsStyles from './projects.module.scss'
 import Fade from 'react-reveal/Fade'
 
-class ProjectsIndex extends React.Component {
+class ProjectsIndex extends Component {
   state = {
     tag: 'all',
   }

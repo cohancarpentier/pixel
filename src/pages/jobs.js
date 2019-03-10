@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
@@ -6,8 +6,11 @@ import Layout from '../components/layout'
 import Fade from 'react-reveal/Fade'
 import jobsStyles from './jobs.module.scss'
 import { VideoHeader } from '../components/video-header'
+import { FormattedMessage } from 'react-intl'
+import LocalizedLink from './../components/LocalizedLink'
+import Translater from './../components/Translater'
 
-class JobsIndex extends React.Component {
+class JobsIndex extends Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const siteMetadata = get(this, 'props.data.site.siteMetadata')
@@ -17,45 +20,99 @@ class JobsIndex extends React.Component {
         index === self.findIndex(t => t.node.slug === thing.node.slug)
     )
     const jobsPage = get(this, 'props.data.allContentfulJobsPage.edges')[0].node
-    console.log(jobsPage)
+
+    const {
+      pathContext: { locale },
+    } = this.props
 
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
-        <Helmet title={siteTitle} />
+        <Translater locale={locale}>
+          <>
+            <Helmet title={siteTitle} />
 
-        <VideoHeader
-          title={jobsPage.title}
-          heroImage={jobsPage.heroImage.fluid.src}
-          heroVideo={jobsPage.heroVideo.file.url}
-          heroTitle={jobsPage.heroTitle}
-          heroDescription={jobsPage.heroDescription.childMarkdownRemark.html}
-        />
+            <VideoHeader
+              title={jobsPage.title}
+              heroImage={jobsPage.heroImage.fluid.src}
+              heroVideo={jobsPage.heroVideo.file.url}
+              heroTitle={jobsPage.heroTitle}
+              heroDescription={
+                jobsPage.heroDescription.childMarkdownRemark.html
+              }
+            />
 
-        <section className="has-background-white">
-          <div className="container">
-            <div
-              className="columns is-multiline"
-              style={{ marginTop: '2.5rem', marginBottom: '6rem' }}
-            >
-              {jobs.map((job, index) => {
-                return (
-                  <Fade key={index} bottom>
-                    <div
-                      className={`column is-11`}
-                      style={{
-                        marginBottom: '6rem',
-                        position: 'relative',
-                      }}
-                    >
-                      <div
-                        className="to-reveal delay-0-8"
-                        style={{ position: 'relative', zIndex: 1 }}
-                      >
-                        <div className={` ${jobsStyles.fakeJob}`}>
+            <section className="has-background-white">
+              <div className="container">
+                <div
+                  className="columns is-multiline"
+                  style={{ marginTop: '2.5rem', marginBottom: '6rem' }}
+                >
+                  {jobs.map((job, index) => {
+                    return (
+                      <Fade key={index} bottom>
+                        <div
+                          className={`column is-11`}
+                          style={{
+                            marginBottom: '6rem',
+                            position: 'relative',
+                          }}
+                        >
+                          <div
+                            className="to-reveal delay-0-8"
+                            style={{ position: 'relative', zIndex: 1 }}
+                          >
+                            <div className={` ${jobsStyles.fakeJob}`}>
+                              <div
+                                style={{
+                                  position: 'relative',
+                                  visibility: 'hidden',
+                                }}
+                              >
+                                <div
+                                  className="level"
+                                  style={{ padding: '3rem 4rem' }}
+                                >
+                                  <div
+                                    className="level-left"
+                                    style={{
+                                      flexDirection: 'column',
+                                      alignItems: 'flex-start',
+                                    }}
+                                  >
+                                    <h2 className="title is-4 has-text-white has-text-weight-bold">
+                                      {job.node.title}
+                                    </h2>
+                                    <p className="has-text-white is-italic">
+                                      {job.node.time}
+                                    </p>
+                                    <p className="has-text-white is-italic">
+                                      <FormattedMessage id="salary" />:{' '}
+                                      {job.node.salary}
+                                    </p>
+                                  </div>
+                                  <div className="level-right">
+                                    <Link
+                                      to={`/jobs/${job.node.slug}`}
+                                      className="btn-gradient"
+                                    >
+                                      <span className="has-text-white">
+                                        <FormattedMessage id="learnMore" />
+                                      </span>
+                                    </Link>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
                           <div
                             style={{
-                              position: 'relative',
-                              visibility: 'hidden',
+                              backgroundColor: '#222222',
+                              position: 'absolute',
+                              left: '3rem',
+                              top: '3rem',
+                              right: '-1.5rem',
+                              zIndex: 2,
                             }}
                           >
                             <div
@@ -70,13 +127,25 @@ class JobsIndex extends React.Component {
                                 }}
                               >
                                 <h2 className="title is-4 has-text-white has-text-weight-bold">
+                                  <span
+                                    style={{
+                                      width: '3rem',
+                                      backgroundColor: 'rgba(255,255,255,0.2)',
+                                      height: '1px',
+                                      display: 'block',
+                                      position: 'relative',
+                                      left: '-4rem',
+                                      top: '0.775rem',
+                                    }}
+                                  />
                                   {job.node.title}
                                 </h2>
                                 <p className="has-text-white is-italic">
                                   {job.node.time}
                                 </p>
                                 <p className="has-text-white is-italic">
-                                  Salaire: {job.node.salary}
+                                  <FormattedMessage id="salary" />:{' '}
+                                  {job.node.salary}
                                 </p>
                               </div>
                               <div className="level-right">
@@ -85,73 +154,21 @@ class JobsIndex extends React.Component {
                                   className="btn-gradient"
                                 >
                                   <span className="has-text-white">
-                                    En savoir plus
+                                    <FormattedMessage id="learnMore" />
                                   </span>
                                 </Link>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-
-                      <div
-                        style={{
-                          backgroundColor: '#222222',
-                          position: 'absolute',
-                          left: '3rem',
-                          top: '3rem',
-                          right: '-1.5rem',
-                          zIndex: 2,
-                        }}
-                      >
-                        <div className="level" style={{ padding: '3rem 4rem' }}>
-                          <div
-                            className="level-left"
-                            style={{
-                              flexDirection: 'column',
-                              alignItems: 'flex-start',
-                            }}
-                          >
-                            <h2 className="title is-4 has-text-white has-text-weight-bold">
-                              <span
-                                style={{
-                                  width: '3rem',
-                                  backgroundColor: 'rgba(255,255,255,0.2)',
-                                  height: '1px',
-                                  display: 'block',
-                                  position: 'relative',
-                                  left: '-4rem',
-                                  top: '0.775rem',
-                                }}
-                              />
-                              {job.node.title}
-                            </h2>
-                            <p className="has-text-white is-italic">
-                              {job.node.time}
-                            </p>
-                            <p className="has-text-white is-italic">
-                              Salaire: {job.node.salary}
-                            </p>
-                          </div>
-                          <div className="level-right">
-                            <Link
-                              to={`/jobs/${job.node.slug}`}
-                              className="btn-gradient"
-                            >
-                              <span className="has-text-white">
-                                En savoir plus
-                              </span>
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Fade>
-                )
-              })}
-            </div>
-          </div>
-        </section>
+                      </Fade>
+                    )
+                  })}
+                </div>
+              </div>
+            </section>
+          </>
+        </Translater>
       </Layout>
     )
   }

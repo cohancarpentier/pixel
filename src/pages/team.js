@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { graphql, Link } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
@@ -8,7 +8,7 @@ import p from './../images/p-colored.svg'
 import Img from 'gatsby-image'
 import Fade from 'react-reveal/Fade'
 
-class TeamIndex extends React.Component {
+class TeamIndex extends Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const siteMetadata = get(this, 'props.data.site.siteMetadata')
