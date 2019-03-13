@@ -14,10 +14,12 @@ class TeamIndex extends Component {
     const siteMetadata = get(this, 'props.data.site.siteMetadata')
     const agency = get(this, 'props.data.allContentfulAgencyPage.edges')[0].node
 
+    console.log(agency)
+
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Helmet title={siteTitle} />
-        <section className="hero is-large">
+        <section className="hero is-fullheight has-background-black">
           <div
             className="hero-video"
             style={{
@@ -37,7 +39,7 @@ class TeamIndex extends Component {
                 height: '100%',
                 width: '100%',
                 objectFit: 'cover',
-                zIndex: '-100',
+                zIndex: '1',
                 right: 0,
                 bottom: 0,
                 /*background:
@@ -46,89 +48,101 @@ class TeamIndex extends Component {
                 overflow: 'hidden',
               }}
             >
-              <source src={agency.heroVideo.file.url} type="video/webm" />
+              <source src={agency.heroVideo.file.url} type="video/mp4" />
             </video>
           </div>
-          <div className="container is-fluid" style={{ paddingTop: '8rem' }}>
-            <hr
-              style={{ backgroundColor: 'rgba(255,255,255,0.2', margin: 0 }}
-            />
+          <div style={{ backgroundColor: 'rgba(0,0,0,0.75)', zIndex: 2 }}>
             <div
-              className="level has-text-white has-text-weight-semibold"
-              style={{ paddingTop: '2rem' }}
+              className="container is-fluid"
+              style={{
+                paddingTop: '8rem',
+              }}
             >
-              <div className="level-left">
-                <h1 className="has-text-weight-semibold">{agency.title}</h1>
-              </div>
-              <div className="level-right" />
-            </div>
-          </div>
-
-          <div
-            className="hero-body"
-            style={{ paddingTop: '7rem', paddingBottom: '12rem' }}
-          >
-            <div className="container">
-              <div className="columns">
-                <div className="column is-half">
-                  <h1 className="title is-1 has-text-weight-bold has-text-gradient">
-                    {agency.heroTitle}
-                  </h1>
-                </div>
-              </div>
-              <div
-                className="has-text-white"
-                dangerouslySetInnerHTML={{
-                  __html: agency.heroDescription.childMarkdownRemark.html,
-                }}
+              <hr
+                style={{ backgroundColor: 'rgba(255,255,255,0.2', margin: 0 }}
               />
               <div
-                className="columns is-multiline"
-                style={{ position: 'relative' }}
+                className="level has-text-white has-text-weight-semibold"
+                style={{ paddingTop: '2rem' }}
               >
-                <div className="column is-10">
-                  <div className={teamStyles.fakeVideo} />
+                <div className="level-left">
+                  <h1 className="has-text-weight-semibold">{agency.title}</h1>
+                </div>
+                <div className="level-right" />
+              </div>
+            </div>
+
+            <div
+              className="hero-body"
+              style={{
+                paddingTop: '7rem',
+                paddingBottom: '12rem',
+              }}
+            >
+              <div className="container">
+                <div className="columns">
+                  <div className="column is-half">
+                    <h1 className="title is-1 has-text-weight-bold has-text-gradient">
+                      {agency.heroTitle}
+                    </h1>
+                  </div>
                 </div>
                 <div
-                  className="column is-10 is-offset-2"
-                  style={{
-                    position: 'absolute',
-                    top: '6.5rem',
-                    zIndex: 2,
+                  className="has-text-white"
+                  dangerouslySetInnerHTML={{
+                    __html: agency.heroDescription.childMarkdownRemark.html,
                   }}
+                />
+                <div
+                  className="columns is-multiline"
+                  style={{ position: 'relative' }}
                 >
+                  <div className="column is-10">
+                    <div
+                      className={`${teamStyles.fakeVideo} to-reveal delay-0-8`}
+                      style={{ position: 'relative', zIndex: 1 }}
+                    />
+                  </div>
                   <div
+                    className="column is-10 is-offset-2"
                     style={{
-                      height: '100%',
-                      width: '100%',
-                      //background: 'url(../img/index-image.jpg) no-repeat center center',
-                      backgroundSize: 'cover',
+                      position: 'absolute',
+                      top: '6.5rem',
+                      zIndex: 2,
                     }}
                   >
-                    <video
-                      //poster="img/bgimg.jpg"
-                      playsInline
-                      autoPlay
-                      muted
-                      loop
+                    <div
                       style={{
                         height: '100%',
                         width: '100%',
-                        objectFit: 'cover',
-                        zIndex: '-100',
-                        right: 0,
-                        bottom: 0,
-                        /*background:
-                  'url(../img/index-image.jpg) no-repeat center center',*/
+                        //background: 'url(../img/index-image.jpg) no-repeat center center',
                         backgroundSize: 'cover',
-                        overflow: 'hidden',
                       }}
                     >
-                      <source
-                        src={agency.agencyVideo.file.url}
-                        type="video/webm"
-                      />
-                    </video>
+                      <video
+                        //poster="img/bgimg.jpg"
+                        playsInline
+                        //autoPlay
+                        muted
+                        controls
+                        //loop
+                        style={{
+                          height: '100%',
+                          width: '100%',
+                          objectFit: 'cover',
+                          zIndex: '-100',
+                          right: 0,
+                          bottom: 0,
+                          backgroundSize: 'cover',
+                          overflow: 'hidden',
+                        }}
+                      >
+                        <source
+                          src={agency.agencyVideo.file.url}
+                          type="video/webm"
+                        />
+                      </video>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -139,7 +153,7 @@ class TeamIndex extends Component {
         <section className="hero has-background-white is-medium">
           <div
             className="hero-body"
-            style={{ paddingTop: 0, paddingBottom: '14rem' }}
+            style={{ paddingTop: '14rem', paddingBottom: '14rem' }}
           >
             <div className="container">
               <div className="columns">

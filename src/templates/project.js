@@ -10,6 +10,7 @@ import Slide from 'react-reveal/Slide'
 import Fade from 'react-reveal/Fade'
 import Translater from './../components/Translater'
 import { FormattedMessage } from 'react-intl'
+import LocalizedLink from '../components/LocalizedLink'
 
 const windowGlobal = typeof window !== 'undefined' && window
 
@@ -63,6 +64,8 @@ class ProjectTemplate extends Component {
       pathContext: { locale },
     } = this.props
 
+    console.log(this.props)
+
     return (
       <Layout location={this.props.location} siteMetadata={siteMetadata}>
         <Translater locale={locale}>
@@ -98,11 +101,15 @@ class ProjectTemplate extends Component {
                     >
                       <span
                         className="title is-3 has-text-white"
-                        style={{ fontWeight: 100, marginRight: '1rem' }}
+                        style={{
+                          fontWeight: 100,
+                          marginRight: '1rem',
+                          marginBottom: 0,
+                        }}
                       >
                         {descriptionOpened ? '-' : '+'}
                       </span>
-                      Description du projet
+                      <FormattedMessage id="projectDescription" />
                     </a>
                   </div>
                 </div>
@@ -137,7 +144,9 @@ class ProjectTemplate extends Component {
                     <div className="column is-3 is-offset-2">
                       {project.client ? (
                         <>
-                          <h2 className="has-text-weight-bold">Client</h2>
+                          <h2 className="has-text-weight-bold">
+                            <FormattedMessage id="client" />
+                          </h2>
                           <p>{project.client}</p>
                           <hr
                             style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}
@@ -147,7 +156,9 @@ class ProjectTemplate extends Component {
 
                       {project.services ? (
                         <>
-                          <h2 className="has-text-weight-bold">Services</h2>
+                          <h2 className="has-text-weight-bold">
+                            <FormattedMessage id="services" />
+                          </h2>
                           <p>{project.services}</p>
                           <hr
                             style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}
@@ -204,7 +215,7 @@ class ProjectTemplate extends Component {
                 <div className="level" style={{ marginTop: '4rem' }}>
                   <div className="level-left">
                     {projects[currentProjectIndex - 1] ? (
-                      <Link
+                      <LocalizedLink
                         to={`/projects/${
                           projects[currentProjectIndex - 1].node.slug
                         }`}
@@ -223,10 +234,10 @@ class ProjectTemplate extends Component {
                         >
                           &lt;
                         </span>
-                      </Link>
+                      </LocalizedLink>
                     ) : null}
                     {projects[currentProjectIndex + 1] ? (
-                      <Link
+                      <LocalizedLink
                         to={`/projects/${
                           projects[currentProjectIndex + 1].node.slug
                         }`}
@@ -244,11 +255,11 @@ class ProjectTemplate extends Component {
                         >
                           &gt;
                         </span>
-                      </Link>
+                      </LocalizedLink>
                     ) : null}
                   </div>
                   <div className="level-right">
-                    <Link
+                    <LocalizedLink
                       to={'/projects'}
                       style={{
                         display: 'flex',
@@ -265,7 +276,7 @@ class ProjectTemplate extends Component {
                       <span className="has-text-black">
                         <FormattedMessage id="seeOurWork" />
                       </span>
-                    </Link>
+                    </LocalizedLink>
                   </div>
                 </div>
               </div>

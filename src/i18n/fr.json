@@ -5,5 +5,8 @@
   "mandateUs": "Mandatez-nous",
   "team": "L'agence",
   "learnMore": "En savoir plus",
-  "salary": "Salaire"
+  "salary": "Salaire",
+  "services": "Services",
+  "client": "Client",
+  "projectDescription": "Description du project"
 }

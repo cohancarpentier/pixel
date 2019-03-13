@@ -8,7 +8,6 @@ import logo from './../images/logo.svg'
 
 export class Footer extends Component {
   render() {
-    console.log(this.props)
     const { phoneNumber, phoneNumberPretty, address } = this.props
 
     return (
@@ -54,7 +53,7 @@ export class Footer extends Component {
                     footerStyles.link
                   } has-text-white has-text-weight-semibold`}
                 >
-                  {/*<FormattedMessage id="team" />*/}
+                  Team
                 </span>
               </Link>
               <Link to={`/projects`}>

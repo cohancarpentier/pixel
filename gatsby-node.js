@@ -54,6 +54,17 @@ exports.createPages = ({ graphql, actions }) => {
             component: project,
             context: {
               slug: el.node.slug,
+              locale: 'fr',
+            },
+          })
+        })
+        projects.forEach(el => {
+          createPage({
+            path: `/en/projects/${el.node.slug}/`,
+            component: project,
+            context: {
+              slug: el.node.slug,
+              locale: 'en',
             },
           })
         })
@@ -63,6 +74,17 @@ exports.createPages = ({ graphql, actions }) => {
             component: job,
             context: {
               slug: el.node.slug,
+              locale: 'fr',
+            },
+          })
+        })
+        jobs.forEach(el => {
+          createPage({
+            path: `/en/jobs/${el.node.slug}/`,
+            component: job,
+            context: {
+              slug: el.node.slug,
+              locale: 'en',
             },
           })
         })
@@ -72,6 +94,17 @@ exports.createPages = ({ graphql, actions }) => {
             component: service,
             context: {
               slug: el.node.slug,
+              locale: 'fr',
+            },
+          })
+        })
+        services.forEach(el => {
+          createPage({
+            path: `/en/services/${el.node.slug}/`,
+            component: service,
+            context: {
+              slug: el.node.slug,
+              locale: 'en',
             },
           })
         })

@@ -69,8 +69,6 @@ class RootIndex extends Component {
       pathContext: { locale },
     } = this.props
 
-    console.log(locale)
-
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const siteMetadata = get(this, 'props.data.site.siteMetadata')
     let projects = get(this, 'props.data.allContentfulProject.edges')
@@ -81,13 +79,6 @@ class RootIndex extends Component {
     let services = get(this, 'props.data.allContentfulService.edges')
 
     services = services.filter(service => service.node.node_locale === locale)
-
-    /*    services = services.filter(
-      (thing, index, self) =>
-        index === self.findIndex(t => t.node.slug === thing.node.slug)
-    )*/
-
-    console.log(services)
 
     const homepage = get(this, 'props.data.allContentfulHomePage.edges')[
       locale === 'fr' ? 0 : 1
@@ -466,7 +457,7 @@ export const pageQuery = graphql`
         address
       }
     }
-    allContentfulService {
+    allContentfulService(sort: { fields: [title], order: ASC }) {
       edges {
         node {
           node_locale

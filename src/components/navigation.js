@@ -62,6 +62,18 @@ export class Navigation extends Component {
                   <span>Mandatez-nous</span>
                 </Link>
 
+                <a
+                  href={'/en'}
+                  className="has-text-white"
+                  style={{
+                    marginRight: '0.5rem',
+                    marginLeft: '1.5rem',
+                    fontSize: '1rem',
+                  }}
+                >
+                  <span>English</span>
+                </a>
+
                 <div
                   onClick={() =>
                     this.setState({

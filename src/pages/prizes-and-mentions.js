@@ -38,9 +38,8 @@ class PrizesAndMentionsIndex extends Component {
             >
               {prizes.map((prize, index) => {
                 return (
-                  <Fade bottom>
+                  <Fade bottom key={index}>
                     <div
-                      key={index}
                       className={`column is-half`}
                       style={{ marginBottom: '4rem', position: 'relative' }}
                     >

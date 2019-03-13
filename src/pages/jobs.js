@@ -91,14 +91,14 @@ class JobsIndex extends Component {
                                     </p>
                                   </div>
                                   <div className="level-right">
-                                    <Link
+                                    <LocalizedLink
                                       to={`/jobs/${job.node.slug}`}
                                       className="btn-gradient"
                                     >
                                       <span className="has-text-white">
                                         <FormattedMessage id="learnMore" />
                                       </span>
-                                    </Link>
+                                    </LocalizedLink>
                                   </div>
                                 </div>
                               </div>
@@ -149,14 +149,14 @@ class JobsIndex extends Component {
                                 </p>
                               </div>
                               <div className="level-right">
-                                <Link
+                                <LocalizedLink
                                   to={`/jobs/${job.node.slug}`}
                                   className="btn-gradient"
                                 >
                                   <span className="has-text-white">
                                     <FormattedMessage id="learnMore" />
                                   </span>
-                                </Link>
+                                </LocalizedLink>
                               </div>
                             </div>
                           </div>
