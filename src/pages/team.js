@@ -281,7 +281,7 @@ export const pageQuery = graphql`
             name
             role
             photo {
-              fluid(maxHeight: 320) {
+              fluid(maxHeight: 460, quality: 100) {
                 ...GatsbyContentfulFluid_withWebp
               }
             }

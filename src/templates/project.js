@@ -321,7 +321,7 @@ export const pageQuery = graphql`
       }
       publishDate(formatString: "MMMM Do, YYYY")
       heroImage {
-        fluid(maxWidth: 1180, background: "rgb:000000") {
+        fluid(maxWidth: 1180, background: "rgb:000000", quality: 100) {
           ...GatsbyContentfulFluid_withWebp
         }
       }
