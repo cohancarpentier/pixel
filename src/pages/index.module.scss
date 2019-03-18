@@ -136,13 +136,6 @@ $btn-height: 48px !default;
   }
 }
 
-.service {
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    opacity: 0.5;
-  }
-}
-
 @keyframes glitch-left {
   0% {
     transform: translate(0);

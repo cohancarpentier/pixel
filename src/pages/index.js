@@ -354,8 +354,8 @@ class RootIndex extends Component {
                             key={index}
                             className={`column is-12-mobile is-one-third has-text-black`}
                           >
-                            <div className={indexStyles.service}>
-                              <h1 className="title has-text-black is-4 has-text-weight-bold">
+                            <div>
+                              <h1 className="hoverGradient title has-text-black is-4 has-text-weight-bold">
                                 {el.node.title}
                               </h1>
                               <hr />
