@@ -38,7 +38,9 @@ class JobTemplate extends Component {
                     className="column"
                     style={{ marginTop: '4rem', marginBottom: '4rem' }}
                     dangerouslySetInnerHTML={{
-                      __html: job.content.childMarkdownRemark.html,
+                      __html: job.content
+                        ? job.content.childMarkdownRemark.html
+                        : '',
                     }}
                   />
                 </div>
