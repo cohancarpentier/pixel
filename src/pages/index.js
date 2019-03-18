@@ -153,8 +153,6 @@ class RootIndex extends Component {
                             display: 'inline-block',
                             float: 'left',
                             clear: 'both',
-                            paddingTop: '0.5rem',
-                            paddingBottom: '0.5rem',
                           }}
                         >
                           <h2
@@ -213,7 +211,7 @@ class RootIndex extends Component {
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                     <h2
                       className="has-text-white is-italic"
-                      style={{ whiteSpace: 'nowrap' }}
+                      style={{ whiteSpace: 'nowrap', paddingTop: '1rem' }}
                     >
                       <FormattedMessage id="ourLatestProjects" />
                     </h2>
@@ -232,7 +230,7 @@ class RootIndex extends Component {
                     style={{ marginBottom: '4rem' }}
                   >
                     <div
-                      className="column is-4"
+                      className="column is-3"
                       style={{
                         display: 'flex',
                         flexDirection: 'column',
@@ -256,8 +254,8 @@ class RootIndex extends Component {
                       </LocalizedLink>
                     </div>
                     <div
-                      className="column is-8"
-                      style={{ marginBottom: '-7rem' }}
+                      className="column is-9"
+                      style={{ marginBottom: '-10rem' }}
                     >
                       <Slider {...carouselSettings} style={{ height: '600px' }}>
                         {projects.map(project => {
@@ -278,7 +276,7 @@ class RootIndex extends Component {
                     </div>
                   </div>
                   <div className="columns is-variable is-8">
-                    <div className="column is-4 has-text-white">
+                    <div className="column is-3 has-text-white">
                       <div
                         style={{
                           display: 'flex',
@@ -317,7 +315,7 @@ class RootIndex extends Component {
                       </div>
                     </div>
                     <div
-                      className="column is-8"
+                      className="column is-9"
                       style={{ display: 'flex', justifyContent: 'flex-end' }}
                     >
                       <LocalizedLink
@@ -383,7 +381,9 @@ class RootIndex extends Component {
             </section>
 
             <section
-              className={`${indexStyles.mobileHero} hero is-medium gradient`}
+              className={`${indexStyles.mobileHero} hero is-medium gradient ${
+                indexStyles.animatedGradient
+              }`}
               style={{
                 position: 'relative',
                 marginBottom: '5.5rem',
@@ -426,6 +426,7 @@ class RootIndex extends Component {
                       <div className="level-right">
                         <LocalizedLink
                           to={`/contact`}
+                          style={{ position: 'relative' }}
                           className={indexStyles.button}
                         >
                           <span className="has-text-black">

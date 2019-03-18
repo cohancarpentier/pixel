@@ -6,6 +6,7 @@ import x from './../images/x.svg'
 import logoWhite from './../images/logo.svg'
 import logoBlack from './../images/logo-black.svg'
 import Slide from 'react-reveal/Slide'
+import Fade from 'react-reveal/Fade'
 
 const windowGlobal = typeof window !== 'undefined' && window
 
@@ -56,23 +57,31 @@ export class Navigation extends Component {
               <div className="level-right">
                 <Link
                   to={'/contact'}
-                  style={{ marginRight: '0.5rem' }}
+                  style={{
+                    marginRight: '0.5rem',
+                    position: 'relative',
+                    color: !showMenu ? 'white' : 'black',
+                    right: !showMenu ? '-4.5rem' : '0rem',
+                    transition: 'right 1s, color 1s',
+                  }}
                   className="btn-gradient"
                 >
                   <span>Mandatez-nous</span>
                 </Link>
 
-                <a
-                  href={'/en'}
-                  className="has-text-white"
-                  style={{
-                    marginRight: '0.5rem',
-                    marginLeft: '1.5rem',
-                    fontSize: '1rem',
-                  }}
-                >
-                  <span>English</span>
-                </a>
+                <Fade when={showMenu}>
+                  <a
+                    href={'/en'}
+                    className="has-text-white"
+                    style={{
+                      marginRight: '0.5rem',
+                      marginLeft: '1.5rem',
+                      fontSize: '1rem',
+                    }}
+                  >
+                    <span className="has-text-black">English</span>
+                  </a>
+                </Fade>
 
                 <div
                   onClick={() =>

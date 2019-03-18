@@ -121,6 +121,15 @@ body {
   background: $gradient;
 }
 
+.hoverGradient {
+  &:hover {
+    background: $gradient;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
 .has-text-gradient {
   background: $gradient;
   background-clip: text;
@@ -131,7 +140,7 @@ body {
 .slick-slider {
   height: 100%;
   position: relative;
-  top: -5.5rem;
+  top: -8.5rem;
 }
 
 .slick-next,

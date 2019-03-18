@@ -38,7 +38,7 @@ export class Footer extends Component {
                 href={`tel:${phoneNumber}`}
                 className={`${
                   footerStyles.mobileTitle
-                } title is-1 has-text-weight-bold has-text-white`}
+                } hoverGradient title is-1 has-text-weight-bold has-text-white`}
               >
                 {phoneNumberPretty}
               </a>
@@ -51,7 +51,7 @@ export class Footer extends Component {
                 <span
                   className={`${
                     footerStyles.link
-                  } has-text-white has-text-weight-semibold`}
+                  } hoverGradient has-text-white has-text-weight-semibold`}
                 >
                   Team
                 </span>
@@ -60,7 +60,7 @@ export class Footer extends Component {
                 <span
                   className={`${
                     footerStyles.link
-                  } has-text-white has-text-weight-semibold`}
+                  } hoverGradient has-text-white has-text-weight-semibold`}
                 >
                   Projets
                 </span>
@@ -69,7 +69,7 @@ export class Footer extends Component {
                 <span
                   className={`${
                     footerStyles.link
-                  } has-text-white has-text-weight-semibold`}
+                  } hoverGradient has-text-white has-text-weight-semibold`}
                 >
                   Services
                 </span>
@@ -78,7 +78,7 @@ export class Footer extends Component {
                 <span
                   className={`${
                     footerStyles.link
-                  } has-text-white has-text-weight-semibold`}
+                  } hoverGradient has-text-white has-text-weight-semibold`}
                 >
                   Jobs
                 </span>
@@ -87,7 +87,7 @@ export class Footer extends Component {
                 <span
                   className={`${
                     footerStyles.link
-                  } has-text-white has-text-weight-semibold`}
+                  } hoverGradient has-text-white has-text-weight-semibold`}
                 >
                   Nous joindre
                 </span>
