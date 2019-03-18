@@ -78,7 +78,7 @@ export class Navigation extends Component {
                     marginRight: '0.5rem',
                     position: 'relative',
                     color: !showMenu ? 'white' : 'black',
-                    right: !showMenu ? '-4.5rem' : '0rem',
+                    right: !showMenu ? '-5.5rem' : '0rem',
                     transition: 'right 1s ease-in-out, color 1s ease-in-out',
                   }}
                   className="btn-gradient"
@@ -91,7 +91,7 @@ export class Navigation extends Component {
                     href={'/en'}
                     className="has-text-white"
                     style={{
-                      marginRight: '0.5rem',
+                      marginRight: '0rem',
                       marginLeft: '1.5rem',
                       fontSize: '1rem',
                     }}
