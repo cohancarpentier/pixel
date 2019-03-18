@@ -108,7 +108,7 @@ export class Navigation extends Component {
                   }
                   className={`${showMenu ? 'open' : null} menuToggle`}
                   style={{
-                    marginRight: '-1.5rem',
+                    marginRight: '-2rem',
                   }}
                 >
                   <div className="hamburger">
@@ -121,20 +121,6 @@ export class Navigation extends Component {
                     <span className="menuLine" />
                   </div>
                 </div>
-                {/*<a>
-                  <img
-                    onClick={() =>
-                      this.setState({
-                        showMenu: !showMenu,
-                      })
-                    }
-                    src={menu}
-                    alt="Menu"
-                    width={32}
-                    height={32}
-                    style={{ marginLeft: '3rem' }}
-                  />
-                  </a>*/}
               </div>
             </div>
           </div>
