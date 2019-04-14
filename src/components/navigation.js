@@ -41,7 +41,7 @@ export class Navigation extends Component {
         <nav
           role="navigation"
           className={[
-            scrolled ? navStyles.hasBackgroundBlack : null,
+            scrolled && !showMenu ? navStyles.hasBackgroundBlack : null,
             navStyles.navigation,
           ].join(' ')}
         >
