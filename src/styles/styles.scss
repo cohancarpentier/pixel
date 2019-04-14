@@ -58,7 +58,7 @@ body {
     position: absolute;
     height: 100%;
     width: 100%;
-    transform: rotate(45deg);
+    transform: rotate(45deg) scale(0.8);
     span {
       &:nth-child(1) {
         height: 0%;
@@ -100,14 +100,14 @@ body {
       background: black;
       &:nth-child(1) {
         height: 80%;
-        transition-delay: 1.325s;
+        transition-delay: 0.725s;
       }
     }
     span {
       background: black;
       &:nth-child(2) {
         width: 80%;
-        transition-delay: 1.075s;
+        transition-delay: 0.475s;
       }
     }
   }

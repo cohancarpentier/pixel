@@ -56,10 +56,12 @@ class TeamIndex extends Component {
               className="container is-fluid"
               style={{
                 paddingTop: '8rem',
+                marginLeft: '5.5rem',
+                marginRight: '5.5rem',
               }}
             >
               <hr
-                style={{ backgroundColor: 'rgba(255,255,255,0.2', margin: 0 }}
+                style={{ backgroundColor: 'rgba(255,255,255,0.2)', margin: 0 }}
               />
               <div
                 className="level has-text-white has-text-weight-semibold"

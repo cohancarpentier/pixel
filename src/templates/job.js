@@ -28,14 +28,18 @@ class JobTemplate extends Component {
               heroImage={job.heroImage ? job.heroImage.fluid.src : null}
               heroVideo={job.heroVideo ? job.heroVideo.file.url : null}
               heroTitle={job.heroTitle}
-              heroDescription={job.heroDescription.childMarkdownRemark.html}
+              heroDescription={
+                job.heroDescription
+                  ? job.heroDescription.childMarkdownRemark.html
+                  : null
+              }
             />
 
             <section>
               <div className="container">
                 <div className="columns">
                   <div
-                    className="column"
+                    className="column content"
                     style={{ marginTop: '4rem', marginBottom: '4rem' }}
                     dangerouslySetInnerHTML={{
                       __html: job.content

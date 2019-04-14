@@ -48,7 +48,7 @@ export class Navigation extends Component {
           <div className="container is-fluid">
             <div className="level">
               <div className="level-left">
-                <Link to={`/`}>
+                <Link to={`/`} style={{ position: 'absolute', top: 8 }}>
                   <img
                     style={{
                       opacity: showMenu ? 0 : 1,
@@ -71,7 +71,7 @@ export class Navigation extends Component {
                   />
                 </Link>
               </div>
-              <div className="level-right">
+              <div className="level-right" style={{ display: 'flex' }}>
                 <Link
                   to={'/contact'}
                   style={{
@@ -79,7 +79,9 @@ export class Navigation extends Component {
                     position: 'relative',
                     color: !showMenu ? 'white' : 'black',
                     right: !showMenu ? '-5.5rem' : '0rem',
-                    transition: 'right 1s ease-in-out, color 1s ease-in-out',
+                    opacity: !showMenu ? 1 : 0,
+                    transition:
+                      'right 1s ease-in-out, color 1s ease-in-out, opacity 0.5s ease-in-out',
                   }}
                   className="btn-gradient"
                 >
@@ -133,7 +135,12 @@ export class Navigation extends Component {
               pointerEvents: showMenu ? 'all' : 'none',
             }}
           >
-            <div className="container">
+            <div
+              className="container"
+              style={{
+                maxWidth: '920px',
+              }}
+            >
               <div className="columns">
                 <div className="column is-half">
                   <Fade right cascade opposite when={showMenu}>
@@ -171,7 +178,7 @@ export class Navigation extends Component {
                           </span>
                         </Link>
                       </li>
-                      <li style={{ paddingBottom: '5rem' }}>
+                      <li style={{ paddingBottom: '3rem' }}>
                         <Link to={`/jobs`}>
                           <span
                             className={`${
@@ -183,9 +190,22 @@ export class Navigation extends Component {
                         </Link>
                       </li>
                       <li>
+                        <Link to={`/contact`}>
+                          <span
+                            className={`${
+                              navStyles.underline
+                            } title is-6 has-text-weight-semibold has-text-black`}
+                          >
+                            Nous joindre
+                          </span>
+                        </Link>
+                      </li>
+                      <li>
                         <Link to={`/studio-rental`}>
                           <span
-                            className={`hoverGradient title is-6 has-text-weight-semibold has-text-black`}
+                            className={`${
+                              navStyles.underline
+                            } title is-6 has-text-weight-semibold has-text-black`}
                           >
                             Location de studio
                           </span>
@@ -194,7 +214,9 @@ export class Navigation extends Component {
                       <li>
                         <Link to={`/prizes-and-mentions`}>
                           <span
-                            className={`hoverGradient title is-6 has-text-weight-semibold has-text-black`}
+                            className={`${
+                              navStyles.underline
+                            } title is-6 has-text-weight-semibold has-text-black`}
                           >
                             Prix et mentions
                           </span>
@@ -211,23 +233,34 @@ export class Navigation extends Component {
                     justifyContent: 'center',
                   }}
                 >
-                  <h3 className="has-text-black has-text-weight-semibold">
+                  <h3
+                    className="has-text-black has-text-weight-semibold"
+                    style={{ fontSize: '0.85rem' }}
+                  >
                     Mandatez-nous
                   </h3>
                   <Link to={'/contact'} className="hoverGradient">
-                    <h3 className="title is-3 has-text-black has-text-weight-bold">
+                    <h3
+                      className="title is-3 has-text-black has-text-weight-bold"
+                      style={{ marginBottom: '1rem' }}
+                    >
                       On travaille ensemble?
                     </h3>
                   </Link>
                   <hr style={{ backgroundColor: 'black' }} />
                   <a
                     href={`tel:${phoneNumber}`}
+                    style={{ marginTop: '1rem' }}
                     className="hoverGradient title is-1 has-text-black has-text-weight-bold"
                   >
                     {phoneNumberPretty}
                   </a>
                   <div
-                    style={{ marginTop: '2rem' }}
+                    style={{
+                      marginTop: '1rem',
+                      fontWeight: 600,
+                      fontSize: '0.85rem',
+                    }}
                     dangerouslySetInnerHTML={{ __html: address }}
                   />
                 </div>
